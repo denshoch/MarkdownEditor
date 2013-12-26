@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>でんでんエディター</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <link href="submodules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -33,9 +32,21 @@ body {
                 color: #666;
                 overflow: scroll;
             }
+            #preview,
+            #code {
+                //background-image: url(https://lh4.googleusercontent.com/-m3cvu_gKtW8/TrauQGoZbHI/AAAAAAAAJdc/ytImJ4o4DcU/s400/sd-07.png);
+                background-repeat: no-repeat;  
+                background-position: center;    
+            }
+            #preview_content {
+                background-color: #444;
+                background-color: rgba(255,255,255,0.9);
+            }
             #code_textarea {
             	padding: 2px 6px;
-                background: #444;
+                background-color: #444;
+                background-color: rgba(0,0,0,0.7);
+
                 color: #fff;
                 min-height:600px;
                 //height:auto !important;
@@ -144,7 +155,9 @@ I strongly recommend against using any `<blink>` tags.
                 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="preview"></div>
+                    <div class="tab-pane active" id="preview">
+                    <div id="preview_content"></div>
+                    </div>
                     <div class="tab-pane" id="code"><textarea id="code_textarea"></textarea></div>
                 </div>
             </div>
@@ -183,10 +196,11 @@ I strongly recommend against using any `<blink>` tags.
 
             function render() {
               var input = editor.getValue();
-              var preview = document.getElementById('preview');
+              var preview = document.getElementById('preview_content');
               var code_textarea = document.getElementById('code_textarea');
               var XHR = new XMLHttpRequest();
               XHR.open("POST", "http://denden-api.herokuapp.com/markdown");
+              XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
               XHR.send(JSON.stringify({"text": input}));
               XHR.onload = function(){
                 var text = XHR.responseText;
