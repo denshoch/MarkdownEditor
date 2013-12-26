@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>でんでんエディター</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <link href="submodules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <style type="text/css">
+        html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+            body {
+            	padding-top: 60px;
+            }
+            #editor {
+                margin-top: 42px; 
+            	min-height:600px;
+            	height:auto !important;
+            	height:600px;
+            }
+            #preview {
+            	padding: 2px;
+                min-height:600px;
+                //height:auto !important;
+                height:600px;
+                width: 100%;
+                border-color: #bbb;
+                color: #666;
+                overflow: scroll;
+            }
+            #code_textarea {
+            	padding: 2px 6px;
+                background: #444;
+                color: #fff;
+                min-height:600px;
+                //height:auto !important;
+                height:600px;
+                width: 100%;
+                border-color: #bbb;
+                overflow: scroll;
+            }
+            .main__content {
+            	margin: 0 10px;
+            }
+            /* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+ 
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 60px;
+}
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+#footer {
+	  padding: 20px 0;
+	  background-color: #888;
+	  color: #fff;
+}
+#footer a {
+	color: #fff;
+}
+        </style>
+        
+    </head>
+    <body>
+    	<div id="wrap">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">でんでんエディター</a>
+            </div>
+        </nav>
+        
+        <div class="row main__content">
+            
+            <div class="col-md-6 col-xs-6">
+                <pre id="editor">Lorem ipsum
+-----------
+
+dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+> This is a blockquote.
+> 
+> This is the second paragraph in the blockquote.
+
+
+Some of these words *are emphasized*.
+Some of these words _are emphasized also_.
+
+Use two asterisks for **strong emphasis**.
+Or, if you prefer, __use two underscores instead__.
+
+## Lists ##
+
+Unordered (bulleted) lists
+
+*   Candy.
+*   Gum.
+*   Booze.
+
+Ordered (numbered) lists
+
+1. Red
+2. Green
+3. Blue
+
+This is an [example link](http://example.com/).
+
+This is an [example link](http://example.com/ "With a Title").
+
+I get 10 times more traffic from [Google][1] than from [Yahoo][2] or [MSN][3].
+
+[1]: http://google.com/        "Google"
+[2]: http://search.yahoo.com/  "Yahoo Search"
+[3]: http://search.msn.com/    "MSN Search
+
+I strongly recommend against using any `<blink>` tags.
+</pre>
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li><a href="#preview" data-toggle="tab">Preview</a></li>
+                    <li><a href="#code" data-toggle="tab">Code</a></li>
+                </ul>
+                
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="preview"></div>
+                    <div class="tab-pane" id="code"><textarea id="code_textarea"></textarea></div>
+                </div>
+            </div>
+            
+        </div>
+        <div id="push"></div>
+    </div>
+
+        <footer id="footer">
+        	<div class="container">
+        <p style="text-align:center"><small>Copyright © 2013 <a href="http://densho.hatenablog.com">電書ちゃんねる</a></small>
+        </p>
+     </div>
+        </footer>
+        
+        <!-- js -->
+        <script src="submodules/ace-builds/src-min-noconflict/ace.js" ></script>
+        <script src="submodules/bootstrap/dist/js/bootstrap.js"></script>
+        <script>
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/github");
+            editor.getSession().setMode("ace/mode/markdown");
+            editor.getSession().setUseWrapMode(true);
+            editor.getSession().on('change', function(e) {
+                render();
+            });
+            editor.commands.addCommand({
+                name: 'myCommand',
+                bindKey: {win: 'Ctrl-M',  mac: 'Command-M'},
+                exec: function(editor) {
+                    //render();
+                },
+                readOnly: true // false if this command should not apply in readOnly mode
+            });
+            render();
+
+            function render() {
+              var input = editor.getValue();
+              var preview = document.getElementById('preview');
+              var code_textarea = document.getElementById('code_textarea');
+              var XHR = new XMLHttpRequest();
+              XHR.open("POST", "http://denden-api.herokuapp.com/markdown");
+              XHR.send(JSON.stringify({"text": input}));
+              XHR.onload = function(){
+                var text = XHR.responseText;
+                code_textarea.textContent = text;
+                preview.innerHTML = text;
+                console.log(text);
+              }
+            }
+        </script>
+    </body>
+</html>
