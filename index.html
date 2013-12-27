@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
     <head>
         <meta charset="utf-8" />
-        <title>でんでんエディター</title>
+        <title>でんでんマークダウンエディタ</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <link href="submodules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <style type="text/css">
@@ -17,7 +17,7 @@ body {
             	padding-top: 60px;
             }
             #editor {
-                margin-top: 42px; 
+                margin-top: 10px; 
             	min-height:600px;
             	height:auto !important;
             	height:600px;
@@ -96,15 +96,27 @@ body {
     	<div id="wrap">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">でんでんエディター</a>
+                <a class="navbar-brand" href="#">でんでんマークダウンエディタ</a>
             </div>
         </nav>
         
         <div class="row main__content">
             
-            <div class="col-md-6 col-xs-6">
+            <div class="col-md-6">
+<div class="btn-toolbar" role="toolbar">
+<div class="btn-group btn-group-sm">
+  <button  id="bold_btn" type="button" class="btn btn-default"><span class="glyphicon glyphicon-bold"></span></button>
+  <button id="italic_btn"  type="button" class="btn btn-default"><span class="glyphicon glyphicon-italic"></span></button>
+  <button id="link_btn" type="button" class="btn btn-default"><span class="glyphicon glyphicon-link"></span></button>
+  <button id="small_btn" type="button" class="btn btn-default">small</button>
+  <button id="code_btn" type="button" class="btn btn-default">code</button>
+</div>
+<div class="btn-group btn-group-sm">
+  <button id="remove_btn" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-remove-sign"></span></button>
+</div>
+</div>
                 <pre id="editor">Lorem ipsum
------------
+===========
 
 dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -146,7 +158,7 @@ I get 10 times more traffic from [Google][1] than from [Yahoo][2] or [MSN][3].
 I strongly recommend against using any `<blink>` tags.
 </pre>
             </div>
-            <div class="col-md-6 col-xs-6">
+            <div class="col-md-6">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">
                     <li><a href="#preview" data-toggle="tab">Preview</a></li>
@@ -176,6 +188,7 @@ I strongly recommend against using any `<blink>` tags.
         <!-- js -->
         <script src="submodules/ace-builds/src-min-noconflict/ace.js" ></script>
         <script src="submodules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="functions.js" ></script>
         <script>
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/github");
@@ -194,6 +207,24 @@ I strongly recommend against using any `<blink>` tags.
             });
             render();
 
+            var bold_btn = document.getElementById('bold_btn');
+            bold_btn.addEventListener('click', bold);
+
+            var italic_btn = document.getElementById('italic_btn');
+            italic_btn.addEventListener('click', italic);
+
+            var remove_btn = document.getElementById('remove_btn');
+            remove_btn.addEventListener('click', remove);
+  
+            var link_btn = document.getElementById('link_btn');
+            link_btn.addEventListener('click', insert_link);
+
+            var small_btn = document.getElementById('small_btn');
+            small_btn.addEventListener('click', small);
+
+            var code_btn = document.getElementById('code_btn');
+            code_btn.addEventListener('click', inline_code);
+
             function render() {
               var input = editor.getValue();
               var preview = document.getElementById('preview_content');
@@ -206,7 +237,6 @@ I strongly recommend against using any `<blink>` tags.
                 var text = XHR.responseText;
                 code_textarea.textContent = text;
                 preview.innerHTML = text;
-                console.log(text);
               }
             }
         </script>
