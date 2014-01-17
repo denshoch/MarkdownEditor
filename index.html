@@ -5,302 +5,235 @@
     <head>
         <meta charset="utf-8" />
         <title>でんでんライブエディタ</title>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://denshoch.github.io/mojimate.js/mojimate.js"></script>
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
-        <style type="text/css">
-        html,
-body {
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
-}
-            body {
-                padding-top: 60px;
-            }
-            #editor {
-                margin-top: 10px; 
-                min-height:600px;
-                height:auto !important;
-                height:600px;
-            }
-            #preview_content {
-                padding: 2px;
-                min-height:600px;
-                //height:auto !important;
-                height:600px;
-                width: 100%;
-                //border-color: #bbb;
-                color: #666;
-                overflow: scroll;
-            }
-            #preview,
-            #code {
-                /*background-image: url(https://lh4.googleusercontent.com/-m3cvu_gKtW8/TrauQGoZbHI/AAAAAAAAJdc/ytImJ4o4DcU/s400/sd-07.png);*/
-                background-repeat: no-repeat;  
-                background-position: center;    
-            }
-            #preview_content {
-                background-color: #444;
-                background-color: rgba(255,255,255,0.9);
-            }
-            #code_textarea {
-                padding: 2px 6px;
-                //background-color: #428bca;
-                background-color: rgba(0,0,0,0.7);
-
-                color: #fff;
-                min-height:600px;
-                //height:auto !important;
-                height:600px;
-                width: 100%;
-                border-color: #bbb;
-                overflow: scroll;
-            }
-            .main__content {
-                margin: 0 10px;
-            }
-            /* Wrapper for page content to push down footer */
-#wrap {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  /* Negative indent footer by it's height */
-  margin: 0 auto -60px;
-}
- 
-/* Set the fixed height of the footer here */
-#push,
-#footer {
-  height: 60px;
-}
-/* Lastly, apply responsive CSS fixes as necessary */
-@media (max-width: 767px) {
-  #footer {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-#footer {
-      padding: 20px 0;
-      background-color: #888;
-      color: #fff;
-}
-#footer a {
-    color: #fff;
-}
-        </style>
-        
+        <link href="assets/stylesheets/style.css" rel="stylesheet" />
     </head>
     <body>
-        <div id="wrap">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">でんでんライブエディタ</a>
+                <a class="navbar-brand" href="#">でんでんライブエディタ（仮）</a>
             </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">テーマを選んでね <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a id="theme_default" href="#">でんでんコンバーター横書きデフォルト</a></li>
+          <li><a id="theme_default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
+          <li><a id="theme_bookstrap" href="#">でんでんブックストラップ（Bootstrap互換）</a></li>
+          <li class="divider"></li>
+          <li><a id="theme_plain" href="#">プレーン</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
         </nav>
-<!--
-        <div class="dropdown active">
-                      <a href="#" id="preview-theme-selector" class="dropdown-toggle" data-toggle="dropdown">Preview <b class="caret"></b></a>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="preview-theme-selector">
-                        <li><a id="theme_plain" href="#" tabindex="-1" data-toggle="tab">Plain</a></li>
-                        <li><a id="theme_bootstrap" href="#" tabindex="-1" data-toggle="tab">Bootstrap</a></li>
-                      </ul>
-        </div>
--->
-        <div class="row main__content">
-            
-            <div class="col-md-6">
-                 <div class="btn-toolbar" role="toolbar">
-                     <div class="btn-group btn-group-sm">
-                        <button  id="bold_btn" type="button" class="btn btn-default"><span class="glyphicon glyphicon-bold"></span></button>
-                        <button id="italic_btn"  type="button" class="btn btn-default"><span class="glyphicon glyphicon-italic"></span></button>
-                        <button id="link_btn" type="button" class="btn btn-default"><span class="glyphicon glyphicon-link"></span></button>
-                        <button id="small_btn" type="button" class="btn btn-default">small</button>
-                        <button id="code_btn" type="button" class="btn btn-default">code</button>
-                    </div>
-                    <div class="btn-group btn-group-sm">
-                        <button id="kanji_btn" type="button" class="btn btn-default">常</button>
-                        <button id="remove_btn" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-remove-sign"></span></button>
-                    </div>
-                    <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            Theme
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a id="theme_default" href="#">Default</a></li>
-                            <li><a id="theme_default_vertical" href="#">Default Vertical</a></li>
-                            <li><a id="theme_bootstrap" href="#">Bootstrap</a></li>
-                            <li class="divider"></li>
-                            <li><a id="theme_plain" href="#">Plain</a></li>
-                        </ul>
-                    </div>
-                 </div>
-                <pre id="editor">Lorem ipsum
-===========
+        
+        <div id="wrap">
+         <div class="container">
+            <ul class="nav nav-tabs">
+                <li><a id="editor-link" href="#editor-tab" data-toggle="tab">Edit</a></li>
+                <li><a id="preview-link" href="#preview-tab" data-toggle="tab">Preview</a></li>
+                <li><a id="code-link" href="#code-tab" data-toggle="tab">Code</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="editor-tab">
+                    <pre id="editor">&lt;div class="page-header" markdown="1"&gt;
+# でんでんライブエディタ（仮）
+&lt;/div&gt;
 
-dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+でんでんマークダウンをリアルタイムでプレビューできるよっ！
 
-> This is a blockquote.
-> 
-> This is the second paragraph in the blockquote.
+## 段落
+
+これは段落です。
+
+これは別の段落です。
 
 
-Some of these words *are emphasized*.
-Some of these words _are emphasized also_.
+### 段落内の改行
 
-Use two asterisks for **strong emphasis**.
-Or, if you prefer, __use two underscores instead__.
+これは段落です。
+これは段落の続きです。
 
-## Lists ##
+---
 
-Unordered (bulleted) lists
+## 見出し
 
-*   Candy.
-*   Gum.
-*   Booze.
+# 見出しレベル１ #
 
-Ordered (numbered) lists
+## 見出しレベル２ ##
 
-1. Red
-2. Green
-3. Blue
+### 見出しレベル３ ###
 
-This is an [example link](http://example.com/).
+#### 見出しレベル４ ####
 
-This is an [example link](http://example.com/ "With a Title").
+##### 見出しレベル５ #####
 
-I get 10 times more traffic from [Google][1] than from [Yahoo][2] or [MSN][3].
+###### 見出しレベル６ ######
 
-[1]: http://google.com/        "Google"
-[2]: http://search.yahoo.com/  "Yahoo Search"
-[3]: http://search.msn.com/    "MSN Search"
+---
 
-I strongly recommend against using any `<blink>` tags.
-</pre>
-            </div>
-            <div class="col-md-6">
+## 引用
 
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs">
-                    <li><a href="#preview" data-toggle="tab">Preview</a></li>
-                    <li><a href="#code" data-toggle="tab">Code</a></li>
-                </ul>
-                
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane active" id="preview">
-                        <iframe id="preview_content" seamless="seamless"></iframe>
-                    </div>
-                    <div class="tab-pane" id="code"><textarea id="code_textarea"></textarea></div>
+> これは引用された段落です。
+>
+> これも引用された段落です。
+
+---
+
+## リスト
+
+* りんご
+* もも
+* みかん
+
+1. りんご
+2. もも
+3. みかん
+
+---
+
+## コードブロック
+
+    &lt;body&gt;
+      &lt;p&gt;Hello world.&lt;/p&gt;
+    &lt;/body&gt;
+
+---
+
+## ハイパーリンク
+
+詳しくは[こちら](http://example.com/)をごらんください。
+
+---
+
+## 強調
+
+これは*強調されたテキスト*です。
+
+これは**重要なテキスト**です。
+
+---
+
+## ルビ
+
+{電子出版|でんししゅっぱん}を手軽に
+
+---
+
+## 縦中横
+
+昭和^53^年
+
+---
+
+## 脚注
+
+これは脚注付き[^1]の段落です。
+
+[^1]: そして、これが脚注です。
+
+---
+
+## 画像
+
+![電書ちゃん](https://lh4.googleusercontent.com/-m3cvu_gKtW8/TrauQGoZbHI/AAAAAAAAJdc/ytImJ4o4DcU/s144/sd-07.png)
+                    </pre>
+                </div>
+                <div class="tab-pane" id="preview-tab">
+                    <iframe id="preview" seamless="seamless"></iframe>
+                </div>
+                <div class="tab-pane" id="code-tab">
+                    <textarea id="code"></textarea>
                 </div>
             </div>
-            
+            <hr />
+            <div class="alert alert-warning">
+            <strong>注意</strong>  開発中のものなのでこっそり使ってください。拡散禁止です。
+            </div>
         </div>
-        <div id="push"></div>
-    </div>
-
+        </div>
+        
         <footer id="footer">
             <div class="container">
-        <p style="text-align:center"><small>Copyright © 2013 <a href="http://densho.hatenablog.com">電書ちゃんねる</a></small>
-        </p>
-     </div>
+                <p class="text-muted"><small>Copyright © 2013 <a href="http://densho.hatenablog.com">電書ちゃんねる</a></small></p>
+            </div>
         </footer>
-        
         <!-- js -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="submodules/ace-builds/src-min-noconflict/ace.js" ></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-        <script src="functions.js" ></script>
-        <script>
+        <script type="text/javascript">
+        $(function(){
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/github");
             editor.getSession().setMode("ace/mode/markdown");
             editor.getSession().setUseWrapMode(true);
-            editor.getSession().on('change', function(e) {
-                render();
-            });
-            editor.commands.addCommand({
-                name: 'myCommand',
-                bindKey: {win: 'Ctrl-M',  mac: 'Command-M'},
-                exec: function(editor) {
-                    //render();
-                },
-                readOnly: true // false if this command should not apply in readOnly mode
-            });
 
-            var iframe = document.getElementById('preview_content');
-            var iframe__document = iframe.contentDocument.documentElement;
-            iframe__document.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /></head><body id="body"></body></html>';
-            var iframe__document__head = iframe.contentDocument.getElementById('head');
-            var iframe__document__head_css_link = iframe.contentDocument.getElementById('css_link');
-            var iframe__document__body = iframe.contentDocument.getElementById('body');
-            
-            var code_textarea = document.getElementById('code_textarea');
-            
+            var preview = document.getElementById('preview');
+            var preview_doc = preview.contentDocument.documentElement;
+            preview_doc.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /></head><body id="body"></body></html>';
+            var preview_doc_head = preview.contentDocument.getElementById('head');
+            var preview_doc_css_link = preview.contentDocument.getElementById('css_link');
+            var preview_doc_body = preview.contentDocument.getElementById('body');
+
+            var code = document.getElementById('code');
+
+        function render() {
+          var input = editor.getValue();
+          var XHR = new XMLHttpRequest();
+          XHR.open("POST", "http://denden-api-md-tmp.herokuapp.com/markdown");
+          XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          XHR.send(JSON.stringify({"text": input, "mode": "denden"}));
+          XHR.onload = function(){
+            var text = XHR.responseText;
+            code.textContent = text;
+            preview_doc_body.innerHTML = text;
+          }
+        }
+
             render();
 
-            var bold_btn = document.getElementById('bold_btn');
-            bold_btn.addEventListener('click', bold);
+            $('#preview-link, #code-link').on('shown.bs.tab', function (e) {
+                render();
+            });
 
-            var italic_btn = document.getElementById('italic_btn');
-            italic_btn.addEventListener('click', italic);
-
-            var remove_btn = document.getElementById('remove_btn');
-            remove_btn.addEventListener('click', remove);
-  
-            var link_btn = document.getElementById('link_btn');
-            link_btn.addEventListener('click', insert_link);
-
-            var small_btn = document.getElementById('small_btn');
-            small_btn.addEventListener('click', small);
-
-            var code_btn = document.getElementById('code_btn');
-            code_btn.addEventListener('click', inline_code);
-
-            var kanji_btn = document.getElementById('kanji_btn');
-            kanji_btn.addEventListener('click', function(){checkKanji(iframe__document__body)});
+            function set_preview_theme(theme) {
+                if (theme == 'plain') {
+                  preview_doc_css_link.setAttribute('href', './plain.css');
+                } else if (theme == 'bookstrap') {
+                  preview_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap.css');
+                } else if (theme == 'default') {
+                  preview_doc_css_link.setAttribute('href', './plain.css');
+                } else if (theme == 'default_vertical') {
+                  preview_doc_css_link.setAttribute('href', './default_vertical.css');
+                } else {
+                  preview_doc_css_link.setAttribute('href', './plain.css');
+                }
+            }
 
             var theme_plain = document.getElementById('theme_plain');
             theme_plain.addEventListener('click', function(){set_preview_theme('plain')});
 
-            var theme_bootstrap = document.getElementById('theme_bootstrap');
-            theme_bootstrap.addEventListener('click', function(){set_preview_theme('bootstrap')});
+            var theme_bookstrap = document.getElementById('theme_bookstrap');
+            theme_bookstrap.addEventListener('click', function(){set_preview_theme('bookstrap')});
 
             var theme_default = document.getElementById('theme_default');
             theme_default.addEventListener('click', function(){set_preview_theme('default')});
 
             var theme_default_vertical = document.getElementById('theme_default_vertical');
             theme_default_vertical.addEventListener('click', function(){set_preview_theme('default_vertical')});
+        });
 
-            function set_preview_theme(theme) {
-                if (theme == 'plain') {
-                  iframe__document__head_css_link.setAttribute('href', './plain.css');
-                } else if (theme == 'bootstrap') {
-                  iframe__document__head_css_link.setAttribute('href', 'submodules/bootstrap/dist/css/bootstrap.min.css');
-                } else if (theme == 'default') {
-                  iframe__document__head_css_link.setAttribute('href', './plain.css');
-                } else if (theme == 'default_vertical') {
-                  iframe__document__head_css_link.setAttribute('href', './default_vertical.css');
-                } else {
-                  iframe__document__head_css_link.setAttribute('href', './plain.css');
-                }
-            }
 
-            function render() {
-              var input = editor.getValue();
-              var XHR = new XMLHttpRequest();
-              XHR.open("POST", "http://denden-api.herokuapp.com/markdown");
-              XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-              XHR.send(JSON.stringify({"text": input}));
-              XHR.onload = function(){
-                var text = XHR.responseText;
-                code_textarea.textContent = text;
-                iframe__document__body.innerHTML = text;
-              }
-            }
 
+
+            
+            
+            
         </script>
     </body>
 </html>
