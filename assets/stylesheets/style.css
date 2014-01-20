@@ -40,14 +40,14 @@ body {
 
 #editor {
   min-height: 600px;
-  min-height: 75vh;
+  min-height: 70vh;
 }
 
 #preview, #code {
   padding: 2px 6px;
   width: 100%;
   min-height: 600px;
-  min-height: 75vh;
+  min-height: 70vh;
 }
 
 #code {
@@ -56,4 +56,13 @@ body {
   color: #fff;
   border-color: #bbb;
   overflow: scroll;
+}
+
+/* Toolbar
+-------------------------------------------------- */
+
+.tab-pane .btn-toolbar {
+  padding-top: 10px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #ccc;
 }
