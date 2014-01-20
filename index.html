@@ -16,16 +16,8 @@
             </div>
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">テーマを選んでね <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a id="theme_default" href="#">でんでんコンバーター横書きデフォルト</a></li>
-          <li><a id="theme_default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
-          <li><a id="theme_bookstrap" href="#">でんでんブックストラップ（Bootstrap互換）</a></li>
-          <li class="divider"></li>
-          <li><a id="theme_plain" href="#">プレーン</a></li>
-        </ul>
-      </li>
+      <li><a href="http://conv.denshochan.com/">でんでんコンバーター</a></li>
+      <li><a href="http://conv.denshochan.com/markdown">でんでんマークダウン</a></li>
     </ul>
   </div>
         </nav>
@@ -40,6 +32,21 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active" id="editor-tab">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-bold"></i></button>
+                            <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-italic"></i></button>
+                        </div>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-link"></i></button>
+                        </div>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-remove"></i></button>
+                        </div>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-default" href="http://conv.denshochan.com/markdown" target="_blank"><i class="glyphicon glyphicon-new-window"></i> でんでんマークダウンのヘルプ</a>
+                        </div>
+                    </div>
                     <pre id="editor">&lt;div class="page-header" markdown="1"&gt;
 # でんでんライブエディタ（仮）
 &lt;/div&gt;
@@ -144,9 +151,32 @@
                     </pre>
                 </div>
                 <div class="tab-pane" id="preview-tab">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-refresh"></i></button>
+                        </div>
+                        <div class="btn-group btn-group-sm">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">テーマを選んでね <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu">
+                                  <li><a id="theme_default" href="#">でんでんコンバーター横書きデフォルト</a></li>
+                                  <li><a id="theme_default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
+                                  <li><a id="theme_bookstrap" href="#">でんでんブックストラップ（Bootstrap互換）</a></li>
+                                  <li class="divider"></li>
+                                  <li><a id="theme_plain" href="#">プレーン</a></li>
+                          </ul>
+                        </div>
+                        <div class="btn-group btn-group-sm">
+                            <a id="kanji_btn" class="btn btn-default" href="#"><i class="glyphicon glyphicon-check"></i> 常用漢字のチェック</a>
+                        </div>
+                    </div>
                     <iframe id="preview" seamless="seamless"></iframe>
                 </div>
                 <div class="tab-pane" id="code-tab">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-default" href="#">placeholder</a>
+                        </div>
+                    </div>
                     <textarea id="code" readonly="readonly"></textarea>
                 </div>
             </div>
@@ -226,6 +256,9 @@
 
             var theme_default_vertical = document.getElementById('theme_default_vertical');
             theme_default_vertical.addEventListener('click', function(){set_preview_theme('default_vertical')});
+
+            var kanji_btn = document.getElementById('kanji_btn');
+ +          kanji_btn.addEventListener('click', function(){checkKanji(preview_doc_body)});
         });
 
 
