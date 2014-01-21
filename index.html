@@ -48,7 +48,7 @@
                             <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-link"></i></button>
                         </div>
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-remove"></i></button>
+                            <button id="remove_btn" type="button" class="btn btn-warning" title="remove"><i class="glyphicon glyphicon-remove"></i></button>
                         </div>
                         <div class="btn-group btn-group-sm">
                             <a class="btn btn-default" href="http://conv.denshochan.com/markdown" target="_blank"><i class="glyphicon glyphicon-new-window"></i> でんでんマークダウンのヘルプ</a>
@@ -226,18 +226,18 @@
                 editor.redo();
             });
 
-        function render() {
-          var input = editor.getValue();
-          var XHR = new XMLHttpRequest();
-          XHR.open("POST", "http://denden-api-md-tmp.herokuapp.com/markdown");
-          XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          XHR.send(JSON.stringify({"text": input, "mode": "denden"}));
-          XHR.onload = function(){
-            var text = XHR.responseText;
-            code.textContent = text;
-            preview_doc_body.innerHTML = text;
-          }
-        }
+            function render() {
+              var input = editor.getValue();
+              var XHR = new XMLHttpRequest();
+              XHR.open("POST", "http://denden-api-md-tmp.herokuapp.com/markdown");
+              XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              XHR.send(JSON.stringify({"text": input, "mode": "denden"}));
+              XHR.onload = function(){
+                var text = XHR.responseText;
+                code.textContent = text;
+                preview_doc_body.innerHTML = text;
+              }
+            }
 
             render();
 
@@ -277,6 +277,12 @@
 
             $("#kanji_btn").click(function(){
                 checkKanji(preview_doc_body);
+            });
+
+            $("#remove_btn").click(function(){
+                if( confirm("編集中のテキストを消去します。よろしいですか？") ) {
+                    editor.setValue("", -1)
+                }
             });
 
         });    
