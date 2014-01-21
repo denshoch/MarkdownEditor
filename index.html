@@ -302,6 +302,7 @@
                 if(selection == ""){selection = "重要なテキスト"}
                 var snippet = "**${1:" + selection + "}**";
                 snippetManager.insertSnippet(editor, snippet);
+                editor.focus();
             });
             $('#italic_btn').click(function(){
                 var snippetManager = ace.require("ace/snippets").snippetManager;
@@ -309,6 +310,7 @@
                 if(selection == ""){selection = "強調されたテキスト"}
                 var snippet = "*${1:" + selection + "}*";
                 snippetManager.insertSnippet(editor, snippet);
+                editor.focus();
             });
             $('#ruby_btn').click(function(){
                 var snippetManager = ace.require("ace/snippets").snippetManager;
@@ -320,6 +322,7 @@
                     var snippet = "{" + selection + "|${1:ルビ文字}}";
                 }
                 snippetManager.insertSnippet(editor, snippet);
+                editor.focus();
             });
 
             function render() {
