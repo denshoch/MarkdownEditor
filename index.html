@@ -245,6 +245,35 @@
             editor.setTheme("ace/theme/github");
             editor.getSession().setMode("ace/mode/markdown");
             editor.getSession().setUseWrapMode(true);
+            ace.config.loadModule('ace/ext/language_tools', function () {
+                editor.setOptions({
+                    enableBasicAutocompletion: true,
+                    enableSnippets: true
+                })
+                
+                var snippetManager = ace.require("ace/snippets").snippetManager;
+                var config = ace.require("ace/config");
+        
+              ace.config.loadModule("ace/snippets/markdown", function(m) {
+                if (m) {
+                  snippetManager.files.javascript = m;          
+                  m.snippets = snippetManager.parseSnippetFile(m.snippetText);
+                  
+                  // or do this if you already have them parsed
+                  m.snippets.push({
+                    content: "{${1:親文字}|${2:ルビ文字}}",
+                    name: "ruby",
+                    tabTrigger: "{"
+                  });
+                  m.snippets.push({
+                    content: "^${1:縦中横にする文字}^",
+                    name: "tcy",
+                    tabTrigger: "^"
+                  });
+                  snippetManager.register(m.snippets, m.scope);
+                  }
+                });
+            });
 
             var preview = document.getElementById('preview');
             var preview_doc = preview.contentDocument.documentElement;
