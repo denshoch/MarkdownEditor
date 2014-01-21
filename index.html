@@ -25,14 +25,21 @@
         <div id="wrap">
          <div class="container">
             <ul class="nav nav-tabs">
-                <li><a id="editor-link" href="#editor-tab" data-toggle="tab">Edit</a></li>
-                <li><a id="preview-link" href="#preview-tab" data-toggle="tab">Preview</a></li>
-                <li><a id="code-link" href="#code-tab" data-toggle="tab">Code</a></li>
+                <li><a id="editor-link" href="#editor-tab" data-toggle="tab"><i class="glyphicon glyphicon-pencil"></i> Edit</a></li>
+                <li><a id="preview-link" href="#preview-tab" data-toggle="tab"><i class="glyphicon glyphicon-eye-open"></i> Preview</a></li>
+                <li><a id="code-link" href="#code-tab" data-toggle="tab"><i class="glyphicon glyphicon-list-alt"></i> Code</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active" id="editor-tab">
                     <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn" disabled="disabled" title="download"><i class="glyphicon glyphicon-download-alt"></i></button>
+                        </div>
+                        <div class="btn-group btn-group-sm">
+                            <button id="undo-btn" type="button" class="btn btn-default" title="undo"><i class="glyphicon glyphicon-step-backward"></i></button>
+                            <button id="redo-btn" type="button" class="btn btn-default" title="redo"><i class="glyphicon glyphicon-step-forward"></i></button>
+                        </div>
                         <div class="btn-group btn-group-sm">
                             <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-bold"></i></button>
                             <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-italic"></i></button>
@@ -156,7 +163,7 @@
                             <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-refresh"></i></button>
                         </div>
                         <div class="btn-group btn-group-sm">
-                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">テーマを選んでね <span class="caret"></span></button>
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-hand-right"></i> テーマを選んでね <span class="caret"></span></button>
                           <ul class="dropdown-menu" role="menu">
                                   <li><a id="theme_default" href="#">でんでんコンバーター横書きデフォルト</a></li>
                                   <li><a id="theme_default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
@@ -212,6 +219,13 @@
 
             var code = document.getElementById('code');
 
+            $("#undo-btn").click(function(){
+                editor.undo();
+            });
+            $("#redo-btn").click(function(){
+                editor.redo();
+            });
+
         function render() {
           var input = editor.getValue();
           var XHR = new XMLHttpRequest();
@@ -237,7 +251,7 @@
                 } else if (theme == 'bookstrap') {
                   preview_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap.css');
                 } else if (theme == 'default') {
-                  preview_doc_css_link.setAttribute('href', './plain.css');
+                  preview_doc_css_link.setAttribute('href', './default.css');
                 } else if (theme == 'default_vertical') {
                   preview_doc_css_link.setAttribute('href', './default_vertical.css');
                 } else {
@@ -245,27 +259,27 @@
                 }
             }
 
-            var theme_plain = document.getElementById('theme_plain');
-            theme_plain.addEventListener('click', function(){set_preview_theme('plain')});
+            $("#theme_plain").click(function(){
+                set_preview_theme('plain');
+            });
 
-            var theme_bookstrap = document.getElementById('theme_bookstrap');
-            theme_bookstrap.addEventListener('click', function(){set_preview_theme('bookstrap')});
+            $("#theme_bookstrap").click(function(){
+                set_preview_theme('bookstrap');
+            });
 
-            var theme_default = document.getElementById('theme_default');
-            theme_default.addEventListener('click', function(){set_preview_theme('default')});
+            $("#theme_default").click(function(){
+                set_preview_theme('default');
+            });
 
-            var theme_default_vertical = document.getElementById('theme_default_vertical');
-            theme_default_vertical.addEventListener('click', function(){set_preview_theme('default_vertical')});
+            $("#theme_default_vertical").click(function(){
+                set_preview_theme('default_vertical');
+            });
 
-            var kanji_btn = document.getElementById('kanji_btn');
- +          kanji_btn.addEventListener('click', function(){checkKanji(preview_doc_body)});
-        });
+            $("#kanji_btn").click(function(){
+                checkKanji(preview_doc_body);
+            });
 
-
-
-
-            
-            
+        });    
             
         </script>
     </body>
