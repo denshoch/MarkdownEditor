@@ -174,7 +174,7 @@
                 <div class="tab-pane" id="code-tab">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-sm">
-                            <a class="btn btn-default" href="#">placeholder</a>
+                            <button type="button" class="btn" disabled="disabled">placeholder</button>
                         </div>
                     </div>
                     <textarea id="code" readonly="readonly"></textarea>
@@ -205,7 +205,7 @@
 
             var preview = document.getElementById('preview');
             var preview_doc = preview.contentDocument.documentElement;
-            preview_doc.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /></head><body id="body"></body></html>';
+            preview_doc.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /></head><body id="body" style="-webkit-transform-origin: 50% 0% 0;-moz-transform-origin: 50% 0% 0;-ms-transform-origin: 50% 0% 0;transform-origin: 50% 0% 0;-webkit-transform: scale(0.9);-moz-transform: scale(0.9);-ms-transform: scale(0.9);transform: scale(0.9);"></body></html>';
             var preview_doc_head = preview.contentDocument.getElementById('head');
             var preview_doc_css_link = preview.contentDocument.getElementById('css_link');
             var preview_doc_body = preview.contentDocument.getElementById('body');
