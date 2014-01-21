@@ -42,7 +42,7 @@
                         </div>
                     
                         <div class="btn-group btn-group-sm">
-                            <button id="download_btn" type="button" class="btn btn-info" title="save" data-toggle="modal" data-target="#download-modal"><i class="glyphicon glyphicon-floppy-save"></i></button>
+                            <button id="download_btn" type="button" class="btn btn-primary" title="save" data-toggle="modal" data-target="#download-modal"><i class="glyphicon glyphicon-floppy-save"></i></button>
                         </div>
                         <div class="btn-group btn-group-sm">
                             <button id="undo-btn" type="button" class="btn btn-default" title="undo"><i class="glyphicon glyphicon-step-backward"></i></button>
@@ -189,7 +189,7 @@
                 <div class="tab-pane" id="code-tab">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn" disabled="disabled">placeholder</button>
+                            <button id="select_all_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-paperclip"></i> コードを全て選択</button>
                         </div>
                     </div>
                     <textarea id="code" readonly="readonly"></textarea>
@@ -310,6 +310,12 @@
                     editor.setValue("", -1)
                 }
             });
+
+            $("#select_all_btn").click(function(){
+                code.select();
+            });
+
+
 
 
             $('#download-modal').on('show.bs.modal', function (e) {
