@@ -29,6 +29,7 @@
                 <li><a id="editor-link" href="#editor-tab" data-toggle="tab"><i class="glyphicon glyphicon-pencil"></i> Edit</a></li>
                 <li><a id="preview-link" href="#preview-tab" data-toggle="tab"><i class="glyphicon glyphicon-eye-open"></i> Preview</a></li>
                 <li><a id="code-link" href="#code-tab" data-toggle="tab"><i class="glyphicon glyphicon-list-alt"></i> Code</a></li>
+                <li><a id="css-editor-link" href="#css-tab" data-toggle="tab"><i class="glyphicon glyphicon-asterisk"></i> Custom CSS</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -195,6 +196,14 @@
                     </div>
                     <textarea id="code" readonly="readonly"></textarea>
                 </div>
+                <div class="tab-pane" id="css-tab">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group btn-group-sm">
+                            <button id="apply_custom_css_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-up"></i> カスタムCSSの適用</button>
+                        </div>
+                    </div>
+                    <textarea id="css_code">/* 独自に追加したいCSSがあればここに書いて適用ボタンを押してください。プレビューに反映されます  */</textarea>
+                </div>
             </div>
             <hr />
             <div class="alert alert-warning">
@@ -239,9 +248,10 @@
 
             var preview = document.getElementById('preview');
             var preview_doc = preview.contentDocument.documentElement;
-            preview_doc.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /></head><body id="body" style="-webkit-transform-origin: 50% 0% 0;-moz-transform-origin: 50% 0% 0;-ms-transform-origin: 50% 0% 0;transform-origin: 50% 0% 0;-webkit-transform: scale(0.9);-moz-transform: scale(0.9);-ms-transform: scale(0.9);transform: scale(0.9);"></body></html>';
+            preview_doc.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /></head><body id="body" style="-webkit-transform-origin: 50% 0% 0;-moz-transform-origin: 50% 0% 0;-ms-transform-origin: 50% 0% 0;transform-origin: 50% 0% 0;-webkit-transform: scale(0.9);-moz-transform: scale(0.9);-ms-transform: scale(0.9);transform: scale(0.9);"></body></html>';
             var preview_doc_head = preview.contentDocument.getElementById('head');
             var preview_doc_css_link = preview.contentDocument.getElementById('css_link');
+            var preview_doc_custom_css_link = preview.contentDocument.getElementById('custom_css_link');
             var preview_doc_body = preview.contentDocument.getElementById('body');
 
             var code = document.getElementById('code');
@@ -316,9 +326,6 @@
                 code.select();
             });
 
-
-
-
             $('#download-modal').on('show.bs.modal', function (e) {
                 var title = $('#title_input').val();
                 if (!title) {
@@ -334,6 +341,19 @@
                 download_link.setAttribute("href", window.URL.createObjectURL(blob));
                 download_link.setAttribute("download", filename);
             });
+
+            $("#apply_custom_css_btn").click(function(){
+                applyCustomCSS();
+            });
+
+            function applyCustomCSS(){
+                var css_val = $('#css_code').val();
+                var data = encodeURIComponent(css_val);
+                var data = 'data:text/css,' + data;
+                preview_doc_custom_css_link.setAttribute('href', data);
+            }
+
+
 
         });    
             
