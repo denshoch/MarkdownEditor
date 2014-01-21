@@ -51,8 +51,9 @@
                             <button id="redo-btn" type="button" class="btn btn-default" title="redo"><i class="glyphicon glyphicon-step-forward"></i></button>
                         </div>
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-bold"></i></button>
-                            <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-italic"></i></button>
+                            <button id="bold_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-bold"></i></button>
+                            <button id="italic_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-italic"></i></button>
+                            <button id="ruby_btn" type="button" class="btn btn-default">ruby</button>
                         </div>
                         <div class="btn-group btn-group-sm">
                             <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-link"></i></button>
@@ -273,6 +274,7 @@
                   snippetManager.register(m.snippets, m.scope);
                   }
                 });
+
             });
 
             var preview = document.getElementById('preview');
@@ -285,11 +287,39 @@
 
             var code = document.getElementById('code');
 
+            // build snippet buttons
+            
+
             $("#undo-btn").click(function(){
                 editor.undo();
             });
             $("#redo-btn").click(function(){
                 editor.redo();
+            });
+            $('#bold_btn').click(function(){
+                var snippetManager = ace.require("ace/snippets").snippetManager;
+                var selection = editor.session.getTextRange(editor.getSelectionRange());
+                if(selection == ""){selection = "重要なテキスト"}
+                var snippet = "**${1:" + selection + "}**";
+                snippetManager.insertSnippet(editor, snippet);
+            });
+            $('#italic_btn').click(function(){
+                var snippetManager = ace.require("ace/snippets").snippetManager;
+                var selection = editor.session.getTextRange(editor.getSelectionRange());
+                if(selection == ""){selection = "強調されたテキスト"}
+                var snippet = "*${1:" + selection + "}*";
+                snippetManager.insertSnippet(editor, snippet);
+            });
+            $('#ruby_btn').click(function(){
+                var snippetManager = ace.require("ace/snippets").snippetManager;
+                var selection = editor.session.getTextRange(editor.getSelectionRange());
+                if(selection == ""){
+                    selection = "親文字";
+                    var snippet = "{${1:" + selection + "}|${2:ルビ文字}}";
+                } else {
+                    var snippet = "{" + selection + "|${1:ルビ文字}}";
+                }
+                snippetManager.insertSnippet(editor, snippet);
             });
 
             function render() {
