@@ -218,10 +218,10 @@
                 <div class="tab-pane" id="css-tab">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-sm">
-                            <button id="apply_custom_css_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-circle-arrow-up"></i> カスタムCSSの適用</button>
+                            <button id="select_all_css_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-paperclip"></i> コードを全て選択</button>
                         </div>
                     </div>
-                    <textarea id="css_code">/* 独自に追加したいCSSがあればここに書いて適用ボタンを押してください。プレビューに反映されます  */</textarea>
+                    <textarea id="css_code">/* 独自に追加したいCSSがあればここに書いてください。プレビューに反映されます  */</textarea>
                 </div>
             </div>
             <hr />
@@ -431,7 +431,11 @@
             });
 
             $("#select_all_btn").click(function(){
-                code.select();
+                $('#code').select();
+            });
+
+            $("#select_all_css_btn").click(function(){
+                $('#css_code').select();
             });
 
             $('#download-modal').on('show.bs.modal', function (e) {
@@ -450,19 +454,12 @@
                 download_link.setAttribute("download", filename);
             });
 
-            $("#apply_custom_css_btn").click(function(){
-                applyCustomCSS();
-            });
-
             function applyCustomCSS(){
                 var css_val = $('#css_code').val();
                 var data = encodeURIComponent(css_val);
                 var data = 'data:text/css,' + data;
                 preview_doc_custom_css_link.setAttribute('href', data);
             }
-
-
-
         });    
             
         </script>
