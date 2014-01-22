@@ -256,7 +256,7 @@
         </footer>
         <!-- js -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script src="submodules/ace-builds/src-min-noconflict/ace.js" ></script>
+        <script src="ace/src-min-noconflict/ace.js" ></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
         <script type="text/javascript">
         $(function(){
@@ -271,9 +271,10 @@
                 })
                 
                 var snippetManager = ace.require("ace/snippets").snippetManager;
+
                 var config = ace.require("ace/config");
         
-              ace.config.loadModule("ace/snippets/markdown", function(m) {
+                ace.config.loadModule("ace/snippets/markdown", function(m) {
                 if (m) {
                   snippetManager.files.javascript = m;          
                   m.snippets = snippetManager.parseSnippetFile(m.snippetText);
@@ -292,6 +293,15 @@
                   snippetManager.register(m.snippets, m.scope);
                   }
                 });
+                ace.config.loadModule("ace/snippets/bootstrap", function(m) {
+                if (m) {
+                  snippetManager.files.javascript = m;          
+                  m.snippets = snippetManager.parseSnippetFile(m.snippetText);
+                  
+                  snippetManager.register(m.snippets, m.scope);
+                  }
+                });
+
 
             });
 
