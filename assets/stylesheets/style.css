@@ -75,6 +75,7 @@ body {
 -------------------------------------------------- */
 
 .tab-pane .btn-toolbar {
+  margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 9px;
   border-bottom: 1px solid #ccc;

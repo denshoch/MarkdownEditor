@@ -346,6 +346,37 @@ snippet alert-danger\n\
 	${1:メッセージ}\n\
 	</div>\n\
 \n\
+## List group\n\
+snippet list-group\n\
+	<ul class=\"list-group\">\n\
+	<li class=\"list-group-item\">${1:アイテム}</li>\n\
+	<li class=\"list-group-item\">${2:アイテム}</li>\n\
+	<li class=\"list-group-item\">${3:アイテム}</li>\n\
+	</ul>\n\
+\n\
+snippet list-group--link\n\
+	<div class=\"list-group\">\n\
+	<a href=\"#\" class=\"list-group-item\">${1:アイテム}</a>\n\
+	<a href=\"#\" class=\"list-group-item\">${2:アイテム}</a>\n\
+	<a href=\"#\" class=\"list-group-item\">${3:アイテム}</a>\n\
+	</div>\n\
+\n\
+snippet list-group--link--content\n\
+	<div class=\"list-group\">\n\
+	<a href=\"#\" class=\"list-group-item\">\n\
+	<h4 class=\"list-group-item-heading\">${1:見出し}</h4>\n\
+	<p class=\"list-group-item-text\">${2:テキスト}</p>\n\
+	</a>\n\
+	<a href=\"#\" class=\"list-group-item\">\n\
+	<h4 class=\"list-group-item-heading\">${3:見出し}</h4>\n\
+	<p class=\"list-group-item-text\">${4:テキスト}</p>\n\
+	</a>\n\
+	<a href=\"#\" class=\"list-group-item\">\n\
+	<h4 class=\"list-group-item-heading\">${5:見出し}</h4>\n\
+	<p class=\"list-group-item-text\">${6:テキスト}</p>\n\
+	</a>\n\
+	</div>\n\
+\n\
 ## Panels\n\
 snippet panel\n\
 	<div class=\"panel panel-default\">\n\
@@ -421,37 +452,6 @@ snippet panel-danger\n\
 	<div class=\"panel-body\">\n\
 	${2:内容}\n\
 	</div>\n\
-	</div>\n\
-\n\
-## List group\n\
-snippet list-group\n\
-	<ul class=\"list-group\">\n\
-	<li class=\"list-group-item\">${1:アイテム}</li>\n\
-	<li class=\"list-group-item\">${2:アイテム}</li>\n\
-	<li class=\"list-group-item\">${3:アイテム}</li>\n\
-	</ul>\n\
-\n\
-snippet list-group--link\n\
-	<div class=\"list-group\">\n\
-	<a href=\"#\" class=\"list-group-item\">${1:アイテム}</a>\n\
-	<a href=\"#\" class=\"list-group-item\">${2:アイテム}</a>\n\
-	<a href=\"#\" class=\"list-group-item\">${3:アイテム}</a>\n\
-	</div>\n\
-\n\
-snippet list-group--link--content\n\
-	<div class=\"list-group\">\n\
-	<a href=\"#\" class=\"list-group-item\">\n\
-	<h4 class=\"list-group-item-heading\">${1:見出し}</h4>\n\
-	<p class=\"list-group-item-text\">${2:テキスト}</p>\n\
-	</a>\n\
-	<a href=\"#\" class=\"list-group-item\">\n\
-	<h4 class=\"list-group-item-heading\">${3:見出し}</h4>\n\
-	<p class=\"list-group-item-text\">${4:テキスト}</p>\n\
-	</a>\n\
-	<a href=\"#\" class=\"list-group-item\">\n\
-	<h4 class=\"list-group-item-heading\">${5:見出し}</h4>\n\
-	<p class=\"list-group-item-text\">${6:テキスト}</p>\n\
-	</a>\n\
 	</div>\n\
 \n\
 ## Wells\n\

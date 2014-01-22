@@ -83,7 +83,9 @@
                             <a class="btn btn-default" href="http://conv.denshochan.com/markdown" target="_blank"><i class="glyphicon glyphicon-new-window"></i> でんでんマークダウンのヘルプ</a>
                         </div>
                     </div>
-                    <pre id="editor">&lt;div class="page-header" markdown="1"&gt;
+                    <div class="row">
+                        <div class="col-md-9">
+                        <pre id="editor">&lt;div class="page-header" markdown="1"&gt;
 # でんでんライブエディタ（仮）
 &lt;/div&gt;
 
@@ -184,7 +186,140 @@
 ## 画像
 
 ![電書ちゃん](https://lh4.googleusercontent.com/-m3cvu_gKtW8/TrauQGoZbHI/AAAAAAAAJdc/ytImJ4o4DcU/s144/sd-07.png)
-                    </pre>
+                        </pre>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- componet snippets -->
+
+                            <div class="btn-group-vertical">
+                                <button type="button" class="btn btn-default btn-sm dd-snippet-btn" data-dd-snippet-name="page-header">Page header</button>
+                                <!-- Text -->
+                                <div class="btn-group btn-group-sm">
+                                  <button id="text_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      Text
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="text_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="lead">lead</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-left">text-left</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-center">text-center</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-right">text-right</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-muted">text-muted</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-primary">text-primary</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-success">text-success</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-info">text-info</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-warning">text-warning</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="text-danger">text-danger</a></li>
+                                  </ul>
+                                </div>
+                                <div class="btn-group btn-group-sm">
+                                  <button id="bq_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      Blockquotes
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="bq_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="blockquote--source">blockquote</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="blockquote-reverse--source">blockquote-reverse</a></li>
+                                  </ul>
+                                </div>
+                                <!-- Lists -->
+                                <div class="btn-group btn-group-sm">
+                                  <button id="list_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      Lists
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="list_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="list-unstyled">list-unstyled</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="list-inline">list-inline</a></li>
+                                  </ul>
+                                </div>
+                                <!-- Tables -->
+                                <div class="btn-group btn-group-sm">
+                                  <button id="table_group_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      Tables
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="table_group_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="table">table</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="table-striped">table-striped</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="table-bordered">table-bordered</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="table-condensed">table-condensed</a></li>
+                                  </ul>
+                                </div>
+                                <!-- Labels -->
+                                <div class="btn-group btn-group-sm">
+                                  <button id="label_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      Labels
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="label_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="label">label</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="label-primary">label-primary</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="label-success">label-success</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="label-info">label-info</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="label-warning">label-warning</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="label-danger">label-danger</a></li>
+                                  </ul>
+                                </div>
+                                <!-- Alerts -->
+                                <div class="btn-group btn-group-sm">
+                                  <button id="alerts_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      Alerts
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="alerts_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="alert-success">alert-success</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="alert-info">alert-info</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="alert-warning">alert-warning</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="alert-danger">alert-danger</a></li>
+                                  </ul>
+                                </div>
+                                <!-- List Group -->
+                                <div class="btn-group btn-group-sm">
+                                  <button id="list_group_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      List Group
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="list_group_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="list-group">list-group</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="list-group--link">list-group--link</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="list-group--link--content">list-group--link--content</a></li>
+                                  </ul>
+                                </div>
+                                <!-- Panels -->
+                                <div class="btn-group btn-group-sm">
+                                  <button id="panel_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      Panels
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="panel_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel">panel</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel--title">panel--title</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel--footer">panel--footer</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel-primary">panel-primary</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel-success">panel-success</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel-info">panel-info</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel-warning">panel-warning</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel-danger">panel-danger</a></li>
+                                  </ul>
+                                </div>
+                                <!-- Wells -->
+                                <div class="btn-group btn-group-sm">
+                                  <button id="well_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                      Wells
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="well_btn_drop">
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="well">well</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="well-lg">well-lg</a></li>
+                                    <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="well-sm">well-sm</a></li>
+                                  </ul>
+                                </div>
+
+                                <p class="text-muted small"><strong>でんでんブックストラップ</strong> 用のスニペットを挿入します</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane" id="preview-tab">
                     <div class="btn-toolbar" role="toolbar">
@@ -271,7 +406,6 @@
                 })
                 
                 var snippetManager = ace.require("ace/snippets").snippetManager;
-
                 var config = ace.require("ace/config");
         
                 ace.config.loadModule("ace/snippets/markdown", function(m) {
@@ -293,16 +427,14 @@
                   snippetManager.register(m.snippets, m.scope);
                   }
                 });
+                // Load bootstrap snippets
                 ace.config.loadModule("ace/snippets/bootstrap", function(m) {
                 if (m) {
-                  snippetManager.files.javascript = m;          
+                  snippetManager.files.markdown = m;          
                   m.snippets = snippetManager.parseSnippetFile(m.snippetText);
-                  
                   snippetManager.register(m.snippets, m.scope);
                   }
                 });
-
-
             });
 
             var preview = document.getElementById('preview');
@@ -316,8 +448,6 @@
             var code = document.getElementById('code');
 
             // build snippet buttons
-            
-
             $("#undo-btn").click(function(){
                 editor.undo();
             });
@@ -377,6 +507,13 @@
                 }
                 var snippet = hmark + " ${1:" + selection + "} " + hmark;
                 snippetManager.insertSnippet(editor, snippet);
+                editor.focus();
+            });
+            $('.dd-snippet-btn').click(function(){
+                var snippetManager = ace.require("ace/snippets").snippetManager;
+                var snippetName = this.getAttribute('data-dd-snippet-name');
+                var s = snippetManager.getSnippetByName(snippetName, editor);
+                snippetManager.insertSnippet(editor, s.content);
                 editor.focus();
             });
 
