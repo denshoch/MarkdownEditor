@@ -397,6 +397,11 @@
             var ns = {} || ns;
         
             $(function () {
+                ns.config = {}
+                ns.config.request_uri = "http://denden-api-md-tmp.herokuapp.com/markdown";
+                ns.config.request_method = "POST";
+                ns.config.request_mode = "denden";
+
                 // editor setup
                 ns.editor = ace.edit("editor");
                 ns.editor.setTheme("ace/theme/github");
@@ -408,7 +413,7 @@
                         enableSnippets: true
                     })
                     ns.snippetManager = ace.require("ace/snippets").snippetManager;
-                    ns.config = ace.require("ace/config");
+                    var config = ace.require("ace/config");
         
                     ace.config.loadModule("ace/snippets/markdown", function (m) {
                         if (m) {
@@ -455,11 +460,11 @@
 
                 ns.render = function(){
                     var XHR = new XMLHttpRequest();
-                    XHR.open("POST", "http://denden-api-md-tmp.herokuapp.com/markdown");
+                    XHR.open(ns.config.request_method, ns.config.request_uri);
                     XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     XHR.send(JSON.stringify({
                         "text": ns.editor.getValue(),
-                        "mode": "denden"
+                        "mode": ns.config.request_mode
                     }));
                     XHR.onload = function () {
                         var text = XHR.responseText;
