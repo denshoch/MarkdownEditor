@@ -25,11 +25,13 @@
         
         <div id="wrap">
          <div class="container">
+            <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li><a id="editor-link" href="#editor-tab" data-toggle="tab"><i class="glyphicon glyphicon-pencil"></i> Edit</a></li>
                 <li><a id="preview-link" href="#preview-tab" data-toggle="tab"><i class="glyphicon glyphicon-eye-open"></i> Preview</a></li>
                 <li><a id="code-link" href="#code-tab" data-toggle="tab"><i class="glyphicon glyphicon-list-alt"></i> Code</a></li>
                 <li><a id="css-editor-link" href="#css-tab" data-toggle="tab"><i class="glyphicon glyphicon-asterisk"></i> Custom CSS</a></li>
+                <li><a id="css-settings-link" href="#settings-tab" data-toggle="tab"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -350,6 +352,7 @@
                     </div>
                     <textarea id="code" readonly="readonly"></textarea>
                 </div>
+                <!-- CSS tab -->
                 <div class="tab-pane" id="css-tab">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-sm">
@@ -358,6 +361,39 @@
                     </div>
                     <textarea id="css_code">/* 独自に追加したいCSSがあればここに書いてください。プレビューに反映されます  */</textarea>
                 </div>
+                <!-- Settings tab -->
+                <div class="tab-pane" id="settings-tab">
+                    <div id="settings-tab__container">
+                      <div class="row">
+                      <div class="col-md-5 col-md-offset-2">
+                      <form role="form">
+                        <h3>Markdown Mode</h3>
+                        <div class="radio">
+                          <label>
+                            <input class="markdown_mode_btn" type="radio" name="optionsRadios" id="markdown_btn--denden" value="denden" checked />
+                            でんでんマークダウン
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input class="markdown_mode_btn" type="radio" name="optionsRadios" id="markdown_btn--extra" value="extra" />
+                            Markdown Extra
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input class="markdown_mode_btn" type="radio" name="optionsRadios" id="markdown_btn--plain" value="markdown" />
+                            Markdown
+                          </label>
+                        </div>
+                        <span class="help-block">Markdownの変換モードを選んでください</span>
+                      </form>
+                      </div> 
+                      </div>
+                      <hr />           
+                    </div>
+                </div>
+                
             </div>
             <hr />
             <div class="alert alert-warning">
@@ -613,6 +649,13 @@
                     var download_link = document.getElementById('download-link');
                     download_link.setAttribute("href", window.URL.createObjectURL(blob));
                     download_link.setAttribute("download", filename);
+                });
+
+                $('.markdown_mode_btn').change(function(){
+                    var v = $(this).attr('value');
+                    console.log(v);
+                    ns.config.request_mode = v;
+                    console.log(ns.config.request_mode);
                 });
 
             });
