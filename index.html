@@ -25,11 +25,13 @@
         
         <div id="wrap">
          <div class="container">
+            <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li><a id="editor-link" href="#editor-tab" data-toggle="tab"><i class="glyphicon glyphicon-pencil"></i> Edit</a></li>
                 <li><a id="preview-link" href="#preview-tab" data-toggle="tab"><i class="glyphicon glyphicon-eye-open"></i> Preview</a></li>
                 <li><a id="code-link" href="#code-tab" data-toggle="tab"><i class="glyphicon glyphicon-list-alt"></i> Code</a></li>
                 <li><a id="css-editor-link" href="#css-tab" data-toggle="tab"><i class="glyphicon glyphicon-asterisk"></i> Custom CSS</a></li>
+                <li><a id="css-settings-link" href="#settings-tab" data-toggle="tab"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -350,6 +352,7 @@
                     </div>
                     <textarea id="code" readonly="readonly"></textarea>
                 </div>
+                <!-- CSS tab -->
                 <div class="tab-pane" id="css-tab">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-sm">
@@ -358,6 +361,39 @@
                     </div>
                     <textarea id="css_code">/* 独自に追加したいCSSがあればここに書いてください。プレビューに反映されます  */</textarea>
                 </div>
+                <!-- Settings tab -->
+                <div class="tab-pane" id="settings-tab">
+                    <div id="settings-tab__container">
+                      <div class="row">
+                      <div class="col-md-5 col-md-offset-2">
+                      <form role="form">
+                        <h3>Markdown Mode</h3>
+                        <div class="radio">
+                          <label>
+                            <input class="markdown_mode_btn" type="radio" name="optionsRadios" id="markdown_btn--denden" value="denden" checked />
+                            でんでんマークダウン
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input class="markdown_mode_btn" type="radio" name="optionsRadios" id="markdown_btn--extra" value="extra" />
+                            Markdown Extra
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input class="markdown_mode_btn" type="radio" name="optionsRadios" id="markdown_btn--plain" value="markdown" />
+                            Markdown
+                          </label>
+                        </div>
+                        <span class="help-block">Markdownの変換モードを選んでください</span>
+                      </form>
+                      </div> 
+                      </div>
+                      <hr />           
+                    </div>
+                </div>
+                
             </div>
             <hr />
             <div class="alert alert-warning">
@@ -394,221 +430,240 @@
         <script src="ace/src-min-noconflict/ace.js" ></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-        $(function(){
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/github");
-            editor.getSession().setMode("ace/mode/markdown");
-            editor.getSession().setUseWrapMode(true);
-            ace.config.loadModule('ace/ext/language_tools', function () {
-                editor.setOptions({
-                    enableBasicAutocompletion: true,
-                    enableSnippets: true
-                })
-                
-                var snippetManager = ace.require("ace/snippets").snippetManager;
-                var config = ace.require("ace/config");
+            var ns = {} || ns;
         
-                ace.config.loadModule("ace/snippets/markdown", function(m) {
-                if (m) {
-                  snippetManager.files.javascript = m;          
-                  m.snippets = snippetManager.parseSnippetFile(m.snippetText);
-                  
-                  // or do this if you already have them parsed
-                  m.snippets.push({
-                    content: "{${1:親文字}|${2:ルビ文字}}",
-                    name: "ruby",
-                    tabTrigger: "{"
-                  });
-                  m.snippets.push({
-                    content: "^${1:縦中横にする文字}^",
-                    name: "tcy",
-                    tabTrigger: "^"
-                  });
-                  snippetManager.register(m.snippets, m.scope);
-                  }
+            $(function () {
+                ns.config = {}
+                ns.config.request_uri = "http://denden-api-md-tmp.herokuapp.com/markdown";
+                ns.config.request_method = "POST";
+                ns.config.request_mode = "denden";
+
+                // editor setup
+                ns.editor = ace.edit("editor");
+                ns.editor.setTheme("ace/theme/github");
+                ns.editor.getSession().setMode("ace/mode/markdown");
+                ns.editor.getSession().setUseWrapMode(true);
+                ace.config.loadModule('ace/ext/language_tools', function () {
+                    ns.editor.setOptions({
+                        enableBasicAutocompletion: true,
+                        enableSnippets: true
+                    })
+                    ns.snippetManager = ace.require("ace/snippets").snippetManager;
+                    var config = ace.require("ace/config");
+        
+                    ace.config.loadModule("ace/snippets/markdown", function (m) {
+                        if (m) {
+                            ns.snippetManager.files.javascript = m;
+                            m.snippets = ns.snippetManager.parseSnippetFile(m.snippetText);
+        
+                            // or do this if you already have them parsed
+                            m.snippets.push({
+                                content: "{${1:親文字}|${2:ルビ文字}}",
+                                name: "ruby",
+                                tabTrigger: "{"
+                            });
+                            m.snippets.push({
+                                content: "^${1:縦中横にする文字}^",
+                                name: "tcy",
+                                tabTrigger: "^"
+                            });
+                            ns.snippetManager.register(m.snippets, m.scope);
+                        }
+                    });
+                    // Load bootstrap snippets
+                    ace.config.loadModule("ace/snippets/bootstrap", function (m) {
+                        if (m) {
+                            ns.snippetManager.files.markdown = m;
+                            m.snippets = ns.snippetManager.parseSnippetFile(m.snippetText);
+                            ns.snippetManager.register(m.snippets, m.scope);
+                        }
+                    });
                 });
-                // Load bootstrap snippets
-                ace.config.loadModule("ace/snippets/bootstrap", function(m) {
-                if (m) {
-                  snippetManager.files.markdown = m;          
-                  m.snippets = snippetManager.parseSnippetFile(m.snippetText);
-                  snippetManager.register(m.snippets, m.scope);
-                  }
+
+                ns.preview = document.getElementById('preview');
+                ns.target_doc = ns.preview.contentDocument;
+                ns.code = document.getElementById('code');
+
+                ns.initDoc = function() {
+                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /></head><body style="-webkit-transform-origin: 50% 0% 0;-moz-transform-origin: 50% 0% 0;-ms-transform-origin: 50% 0% 0;transform-origin: 50% 0% 0;-webkit-transform: scale(0.9);-moz-transform: scale(0.9);-ms-transform: scale(0.9);transform: scale(0.9);"></body></html>';
+                  ns.target_doc_head = ns.target_doc.getElementById('head');
+                  ns.target_doc_css_link = ns.target_doc.getElementById('css_link');
+                  ns.target_doc_custom_css_link = ns.target_doc.getElementById('custom_css_link');
+                  ns.target_doc_body = ns.target_doc.getElementsByTagName('body')[0];
+                };
+
+                ns.initDoc();
+
+                ns.render = function(){
+                    var XHR = new XMLHttpRequest();
+                    XHR.open(ns.config.request_method, ns.config.request_uri);
+                    XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    XHR.send(JSON.stringify({
+                        "text": ns.editor.getValue(),
+                        "mode": ns.config.request_mode
+                    }));
+                    XHR.onload = function () {
+                        var text = XHR.responseText;
+                        ns.code.textContent = text;
+                        ns.target_doc.getElementsByTagName('body')[0].innerHTML = text;
+                    }
+                }
+
+                ns.render();
+
+                ns.applyCustomCSS = function(){
+                    var css_val = $('#css_code').val();
+                    var data = encodeURIComponent(css_val);
+                    var data = 'data:text/css,' + data;
+                    ns.target_doc_custom_css_link.setAttribute('href', data);
+                }
+        
+                // build snippet buttons
+                $("#undo-btn").click(function () {
+                    ns.editor.undo();
                 });
-            });
+                $("#redo-btn").click(function () {
+                    ns.editor.redo();
+                });
+                $('#bold_btn').click(function () {
+                    var selection = ns.editor.session.getTextRange(ns.editor.getSelectionRange());
+                    if (selection == "") {
+                        selection = "重要なテキスト"
+                    }
+                    var snippet = "**${1:" + selection + "}**";
+                    ns.snippetManager.insertSnippet(ns.editor, snippet);
+                    ns.editor.focus();
+                });
+                $('#italic_btn').click(function () {
+                    var selection = ns.editor.session.getTextRange(ns.editor.getSelectionRange());
+                    if (selection == "") {
+                        selection = "強調されたテキスト"
+                    }
+                    var snippet = "*${1:" + selection + "}*";
+                    ns.snippetManager.insertSnippet(ns.editor, snippet);
+                    ns.editor.focus();
+                });
+                $('#ruby_btn').click(function () {
+                    var selection = ns.editor.session.getTextRange(ns.editor.getSelectionRange());
+                    if (selection == "") {
+                        selection = "親文字";
+                        var snippet = "{${1:" + selection + "}|${2:ルビ文字}}";
+                    } else {
+                        var snippet = "{" + selection + "|${1:ルビ文字}}";
+                    }
+                    ns.snippetManager.insertSnippet(ns.editor, snippet);
+                    ns.editor.focus();
+                });
+                $('#link_btn').click(function () {
+                    var selection = ns.editor.session.getTextRange(ns.editor.getSelectionRange());
+                    if (selection == "") {
+                        selection = "代替テキスト";
+                        var snippet = "[${1:" + selection + "}](${2:http://example.com})";
+                    } else {
+                        var snippet = "[" + selection + "](${1:http://example.com})";
+                    }
+                    ns.snippetManager.insertSnippet(ns.editor, snippet);
+                    ns.editor.focus();
+                });
+                $(".h_btn").click(function () {
+                    var selection = ns.editor.session.getTextRange(ns.editor.getSelectionRange());
+                    if (selection == "") {
+                        selection = "見出し";
+                    }
+                    var lank = parseInt(this.getAttribute('data-dd-hlank'));
+                    var hmark = "";
+                    for (i = 0; i < lank; i = i + 1) {
+                        hmark += "#";
+                    }
+                    var snippet = hmark + " ${1:" + selection + "} " + hmark;
+                    ns.snippetManager.insertSnippet(ns.editor, snippet);
+                    ns.editor.focus();
+                });
+                $('.dd-snippet-btn').click(function () {
+                    var snippetName = this.getAttribute('data-dd-snippet-name');
+                    var s = ns.snippetManager.getSnippetByName(snippetName, ns.editor);
+                    ns.snippetManager.insertSnippet(ns.editor, s.content);
+                    ns.editor.focus();
+                });
+        
+                $('#preview-link, #code-link').on('shown.bs.tab', function (e) {
+                    ns.render();
+                    ns.applyCustomCSS();
+                });
 
-            var preview = document.getElementById('preview');
-            var preview_doc = preview.contentDocument.documentElement;
-            preview_doc.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /></head><body id="body" style="-webkit-transform-origin: 50% 0% 0;-moz-transform-origin: 50% 0% 0;-ms-transform-origin: 50% 0% 0;transform-origin: 50% 0% 0;-webkit-transform: scale(0.9);-moz-transform: scale(0.9);-ms-transform: scale(0.9);transform: scale(0.9);"></body></html>';
-            var preview_doc_head = preview.contentDocument.getElementById('head');
-            var preview_doc_css_link = preview.contentDocument.getElementById('css_link');
-            var preview_doc_custom_css_link = preview.contentDocument.getElementById('custom_css_link');
-            var preview_doc_body = preview.contentDocument.getElementById('body');
-
-            var code = document.getElementById('code');
-
-            // build snippet buttons
-            $("#undo-btn").click(function(){
-                editor.undo();
-            });
-            $("#redo-btn").click(function(){
-                editor.redo();
-            });
-            $('#bold_btn').click(function(){
-                var snippetManager = ace.require("ace/snippets").snippetManager;
-                var selection = editor.session.getTextRange(editor.getSelectionRange());
-                if(selection == ""){selection = "重要なテキスト"}
-                var snippet = "**${1:" + selection + "}**";
-                snippetManager.insertSnippet(editor, snippet);
-                editor.focus();
-            });
-            $('#italic_btn').click(function(){
-                var snippetManager = ace.require("ace/snippets").snippetManager;
-                var selection = editor.session.getTextRange(editor.getSelectionRange());
-                if(selection == ""){selection = "強調されたテキスト"}
-                var snippet = "*${1:" + selection + "}*";
-                snippetManager.insertSnippet(editor, snippet);
-                editor.focus();
-            });
-            $('#ruby_btn').click(function(){
-                var snippetManager = ace.require("ace/snippets").snippetManager;
-                var selection = editor.session.getTextRange(editor.getSelectionRange());
-                if(selection == ""){
-                    selection = "親文字";
-                    var snippet = "{${1:" + selection + "}|${2:ルビ文字}}";
-                } else {
-                    var snippet = "{" + selection + "|${1:ルビ文字}}";
-                }
-                snippetManager.insertSnippet(editor, snippet);
-                editor.focus();
-            });
-            $('#link_btn').click(function(){
-                var snippetManager = ace.require("ace/snippets").snippetManager;
-                var selection = editor.session.getTextRange(editor.getSelectionRange());
-                if(selection == ""){
-                    selection = "代替テキスト";
-                    var snippet = "[${1:" + selection + "}](${2:http://example.com})";
-                } else {
-                    var snippet = "[" + selection + "](${1:http://example.com})";
-                }
-                snippetManager.insertSnippet(editor, snippet);
-                editor.focus();
-            });
-            $(".h_btn").click(function(){
-                var snippetManager = ace.require("ace/snippets").snippetManager;
-                var selection = editor.session.getTextRange(editor.getSelectionRange());
-                if(selection == ""){
-                    selection = "見出し";
-                }
-                var lank = parseInt(this.getAttribute('data-dd-hlank'));
-                var hmark = "";
-                for(i=0; i<lank; i=i+1) {
-                    hmark += "#";
-                }
-                var snippet = hmark + " ${1:" + selection + "} " + hmark;
-                snippetManager.insertSnippet(editor, snippet);
-                editor.focus();
-            });
-            $('.dd-snippet-btn').click(function(){
-                var snippetManager = ace.require("ace/snippets").snippetManager;
-                var snippetName = this.getAttribute('data-dd-snippet-name');
-                var s = snippetManager.getSnippetByName(snippetName, editor);
-                snippetManager.insertSnippet(editor, s.content);
-                editor.focus();
-            });
-
-            function render() {
-              var input = editor.getValue();
-              var XHR = new XMLHttpRequest();
-              XHR.open("POST", "http://denden-api-md-tmp.herokuapp.com/markdown");
-              XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-              XHR.send(JSON.stringify({"text": input, "mode": "denden"}));
-              XHR.onload = function(){
-                var text = XHR.responseText;
-                code.textContent = text;
-                preview_doc_body.innerHTML = text;
-              }
-            }
-
-            render();
-
-            $('#preview-link, #code-link').on('shown.bs.tab', function (e) {
-                render();
-                applyCustomCSS();
-            });
-
-            function set_preview_theme(theme) {
-                if (theme == 'plain') {
-                  preview_doc_css_link.setAttribute('href', './plain.css');
-                } else if (theme == 'bookstrap') {
-                  preview_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap.css');
-                } else if (theme == 'default') {
-                  preview_doc_css_link.setAttribute('href', './default.css');
-                } else if (theme == 'default_vertical') {
-                  preview_doc_css_link.setAttribute('href', './default_vertical.css');
-                } else {
-                  preview_doc_css_link.setAttribute('href', './plain.css');
-                }
-            }
-
-            $("#theme_plain").click(function(){
-                set_preview_theme('plain');
-            });
-
-            $("#theme_bookstrap").click(function(){
-                set_preview_theme('bookstrap');
-            });
-
-            $("#theme_default").click(function(){
-                set_preview_theme('default');
-            });
-
-            $("#theme_default_vertical").click(function(){
-                set_preview_theme('default_vertical');
-            });
-
-            $("#kanji_btn").click(function(){
-                checkKanji(preview_doc_body);
-            });
-
-            $("#remove_btn").click(function(){
-                if( confirm("編集中のテキストを消去します。よろしいですか？") ) {
-                    editor.setValue("", -1)
-                }
-            });
-
-            $("#select_all_btn").click(function(){
-                $('#code').select();
-            });
-
-            $("#select_all_css_btn").click(function(){
-                $('#css_code').select();
-            });
-
-            $('#download-modal').on('show.bs.modal', function (e) {
-                var title = $('#title_input').val();
-                if (!title) {
-                    title = "Untitled Document"
+                ns.setPreviewTheme = function(name) {
+                    if (name == 'plain') {
+                        ns.target_doc_css_link.setAttribute('href', './plain.css');
+                    } else if (name == 'bookstrap') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap.css');
+                    } else if (name == 'default') {
+                        ns.target_doc_css_link.setAttribute('href', './default.css');
+                    } else if (name == 'default_vertical') {
+                        ns.target_doc_css_link.setAttribute('href', './default_vertical.css');
+                    } else {
+                        ns.target_doc_css_link.setAttribute('href', './plain.css');
+                    }
                 }
 
-                var filename = title.replace(/\s+|　+/g,'_') + '.txt';
-                $('#download_filename').text(filename);
-                console.log(filename);
-                var text = editor.getValue();
-                var blob = new Blob([text],{"type" : "text/plain"});
-                var download_link = document.getElementById('download-link');
-                download_link.setAttribute("href", window.URL.createObjectURL(blob));
-                download_link.setAttribute("download", filename);
-            });
+                $("#theme_plain").click(function () {
+                    ns.setPreviewTheme('plain');
+                });
+        
+                $("#theme_bookstrap").click(function () {
+                    ns.setPreviewTheme('bookstrap');
+                });
+        
+                $("#theme_default").click(function () {
+                    ns.setPreviewTheme('default');
+                });
+        
+                $("#theme_default_vertical").click(function () {
+                    ns.setPreviewTheme('default_vertical');
+                });
+        
+                $("#kanji_btn").click(function () {
+                    checkKanji(preview_doc_body);
+                });
+        
+                $("#select_all_btn").click(function () {
+                    $('#code').select();
+                });
+        
+                $("#select_all_css_btn").click(function () {
+                    $('#css_code').select();
+                });
+        
+                $('#download-modal').on('show.bs.modal', function (e) {
+                    var title = $('#title_input').val();
+                    if (!title) {
+                        title = "Untitled Document"
+                    }
+        
+                    var filename = title.replace(/\s+|　+/g, '_') + '.txt';
+                    $('#download_filename').text(filename);
+                    console.log(filename);
+                    var text = ns.editor.getValue();
+                    var blob = new Blob([text], {
+                        "type": "text/plain"
+                    });
+                    var download_link = document.getElementById('download-link');
+                    download_link.setAttribute("href", window.URL.createObjectURL(blob));
+                    download_link.setAttribute("download", filename);
+                });
 
-            function applyCustomCSS(){
-                var css_val = $('#css_code').val();
-                var data = encodeURIComponent(css_val);
-                var data = 'data:text/css,' + data;
-                preview_doc_custom_css_link.setAttribute('href', data);
-            }
-        });    
-            
+                $('.markdown_mode_btn').change(function(){
+                    var v = $(this).attr('value');
+                    console.log(v);
+                    ns.config.request_mode = v;
+                    console.log(ns.config.request_mode);
+                });
+
+            });
+            $("#remove_btn").click(function () {
+                if (confirm("編集中のテキストを消去します。よろしいですか？")) {
+                    ns.editor.setValue("", -1)
+                }
+            });
         </script>
     </body>
 </html>
