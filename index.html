@@ -356,10 +356,12 @@
                 <div class="tab-pane" id="css-tab">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-sm">
-                            <button id="select_all_css_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-paperclip"></i> コードを全て選択</button>
+                            <!-- remove button -->
+                            <button id="css_remove_btn" type="button" class="btn btn-warning" title="remove"><i class="glyphicon glyphicon-remove"></i></button>
                         </div>
                     </div>
-                    <textarea id="css_code">/* 独自に追加したいCSSがあればここに書いてください。プレビューに反映されます  */</textarea>
+                    <pre id="css_editor">/* 独自に追加したいCSSがあればここに書いてください。プレビューに反映されます  */
+</pre>
                 </div>
                 <!-- Settings tab -->
                 <div class="tab-pane" id="settings-tab">
@@ -480,6 +482,13 @@
                     });
                 });
 
+                // css editor setup
+                ns.css_editor = ace.edit("css_editor");
+                ns.css_editor.setTheme("ace/theme/github");
+                ns.css_editor.getSession().setMode("ace/mode/css");
+                ns.css_editor.getSession().setUseWrapMode(true);
+                ns.css_editor.gotoLine(2, 0, false);
+
                 ns.preview = document.getElementById('preview');
                 ns.target_doc = ns.preview.contentDocument;
                 ns.code = document.getElementById('code');
@@ -512,7 +521,7 @@
                 ns.render();
 
                 ns.applyCustomCSS = function(){
-                    var css_val = $('#css_code').val();
+                    var css_val = ns.css_editor.getValue();
                     var data = encodeURIComponent(css_val);
                     var data = 'data:text/css,' + data;
                     ns.target_doc_custom_css_link.setAttribute('href', data);
@@ -661,7 +670,12 @@
             });
             $("#remove_btn").click(function () {
                 if (confirm("編集中のテキストを消去します。よろしいですか？")) {
-                    ns.editor.setValue("", -1)
+                    ns.editor.setValue("", -1);
+                }
+            });
+            $("#css_remove_btn").click(function () {
+                if (confirm("編集中のテキストを消去します。よろしいですか？")) {
+                    ns.css_editor.setValue("", -1);
                 }
             });
         </script>
