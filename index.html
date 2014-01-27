@@ -489,6 +489,20 @@
                 ns.css_editor.getSession().setUseWrapMode(true);
                 ns.css_editor.gotoLine(2, 0, false);
 
+                ns.loadPreviousData = function() {
+                  var previous_data = localStorage.getItem("previous_data");
+
+                  if(previous_data) {
+                    if (confirm("前回の編集データを読み込みますか？")) {
+                        var p = JSON.parse(previous_data);
+                        ns.editor.setValue(p.text);
+                        ns.css_editor.setValue(p.custom_css);
+                    }
+                  }
+                }
+
+                ns.loadPreviousData();
+
                 ns.preview = document.getElementById('preview');
                 ns.target_doc = ns.preview.contentDocument;
                 ns.code = document.getElementById('code');
@@ -665,6 +679,13 @@
                     console.log(v);
                     ns.config.request_mode = v;
                     console.log(ns.config.request_mode);
+                });
+                $(window).bind("beforeunload", function() {
+                  var obj = {
+                    text: ns.editor.getValue(),
+                    custom_css: ns.css_editor.getValue()
+                  }
+                  localStorage.setItem("previous_data", JSON.stringify(obj));
                 });
 
             });
