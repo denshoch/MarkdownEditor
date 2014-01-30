@@ -6,6 +6,7 @@
         <meta charset="utf-8" />
         <title>でんでんライブエディタ</title>
         <script type="text/javascript" src="http://denshoch.github.io/mojimate.js/mojimate.js"></script>
+        <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="p5gmil9rggf9wo1"></script>
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
         <link href="assets/stylesheets/style.css" rel="stylesheet" />
         <link href="" rel="stylesheet" />
@@ -416,7 +417,11 @@
                     <dt>ファイル名</dt>
                     <dd id="download_filename"></dd>
                 </dl>
-                <a id="download-link" class="btn btn-primary" href="#">Download</a>
+                <hr />
+                <ul class="list-inline">
+                  <li><a id="download-link" class="btn btn-primary" href="#">Download</a></li>
+                  <li><a id="dropbox-saver" href="#" class="dropbox-saver"></a><li>
+                </ul>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
@@ -669,9 +674,10 @@
                     var blob = new Blob([text], {
                         "type": "text/plain"
                     });
-                    var download_link = document.getElementById('download-link');
-                    download_link.setAttribute("href", window.URL.createObjectURL(blob));
-                    download_link.setAttribute("download", filename);
+                    $('#download-link, #dropbox-saver').attr('href', window.URL.createObjectURL(blob));
+                    $('#download-link').attr('download', filename);
+
+
                 });
 
                 $('.markdown_mode_btn').change(function(){
