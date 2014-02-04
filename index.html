@@ -333,9 +333,11 @@
                 </div>
                 <div class="tab-pane" id="preview-tab">
                     <div class="btn-toolbar" role="toolbar">
+                        <!--
                         <div class="btn-group btn-group-sm">
                             <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-refresh"></i></button>
                         </div>
+                        -->
                         <div class="btn-group btn-group-sm">
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-hand-right"></i> テーマを選んでね <span class="caret"></span></button>
                           <ul class="dropdown-menu" role="menu">
@@ -347,9 +349,18 @@
                           </ul>
                         </div>
                         <div class="btn-group btn-group-sm">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-font"></i> 文字の大きさ <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a class="font_size_btn" data-dd-font-size="75" href="#">75%</a></li>
+                            <li><a class="font_size_btn" data-dd-font-size="100" href="#">100%</a></li>
+                            <li><a class="font_size_btn" data-dd-font-size="150" href="#">150%</a></li>
+                          </ul>
+                        </div>
+                        <div class="btn-group btn-group-sm">
                             <a id="kanji_btn" class="btn btn-default" href="#"><i class="glyphicon glyphicon-check"></i> 常用漢字のチェック</a>
                         </div>
                     </div>
+
                     <iframe id="preview" seamless="seamless"></iframe>
                 </div>
                 <div class="tab-pane" id="code-tab">
@@ -520,7 +531,7 @@
                 ns.code = document.getElementById('code');
 
                 ns.initDoc = function() {
-                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /></head><body style="-webkit-transform-origin: 50% 0% 0;-moz-transform-origin: 50% 0% 0;-ms-transform-origin: 50% 0% 0;transform-origin: 50% 0% 0;-webkit-transform: scale(0.9);-moz-transform: scale(0.9);-ms-transform: scale(0.9);transform: scale(0.9);"></body></html>';
+                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /></head><body></body></html>';
                   ns.target_doc_head = ns.target_doc.getElementById('head');
                   ns.target_doc_css_link = ns.target_doc.getElementById('css_link');
                   ns.target_doc_custom_css_link = ns.target_doc.getElementById('custom_css_link');
@@ -619,6 +630,10 @@
                     var s = ns.snippetManager.getSnippetByName(snippetName, ns.editor);
                     ns.snippetManager.insertSnippet(ns.editor, s.content);
                     ns.editor.focus();
+                });
+                $('.font_size_btn').click(function(){
+                  var size = this.getAttribute('data-dd-font-size');
+                  ns.target_doc_body.setAttribute('style', 'font-size:' + size + "%;");
                 });
         
                 $('#preview-link, #code-link').on('shown.bs.tab', function (e) {
