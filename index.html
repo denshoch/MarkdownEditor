@@ -704,7 +704,7 @@
                     var data = window.btoa(unescape(encodeURIComponent(text)));
                     var options = {
                       files: [
-                        {'url': 'data:text/plain;charset=utrf8,base64,' + data, 'filename': filename}
+                        {'url': 'data:text/plain;base64,' + data, 'filename': filename}
                       ],
                       error: function (errorMessage) {
                         console.log(errorMessage);
