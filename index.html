@@ -48,24 +48,23 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="editor-tab">
                     <div class="btn-toolbar" role="toolbar">
-                    
                         <div class="btn-group btn-group-sm">
                             <form class="form-inline" role="form">
                                 <label class="sr-only" for="title_input">Document Title</label>
-                                <input type="text" id="title_input" class="form-control input-sm" placeholder="Untitled Document" />
+                                <input type="text" id="title_input" class="form-control input-sm" placeholder="Untitled Document" data-toggle="tooltip" title="保存するファイル名の指定" />
                             </form>
                         </div>
                     
-                        <div class="btn-group btn-group-sm">
+                        <div class="btn-group btn-group-sm" data-toggle="tooltip" title="ファイルに保存">
                             <button id="download_btn" type="button" class="btn btn-primary" title="save" data-toggle="modal" data-target="#download-modal"><i class="glyphicon glyphicon-floppy-save"></i></button>
                         </div>
                         <div class="btn-group btn-group-sm">
                             <!-- undo button -->
-                            <button id="undo-btn" type="button" class="btn btn-default" title="undo"><i class="glyphicon glyphicon-step-backward"></i></button>
+                            <button id="undo-btn" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="元にもどす"><i class="glyphicon glyphicon-step-backward"></i></button>
                             <!-- redo button -->
-                            <button id="redo-btn" type="button" class="btn btn-default" title="redo"><i class="glyphicon glyphicon-step-forward"></i></button>
+                            <button id="redo-btn" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="やり直す"><i class="glyphicon glyphicon-step-forward"></i></button>
                         </div>
-                        <div class="btn-group btn-group-sm">
+                        <div class="btn-group btn-group-sm" data-toggle="tooltip" title="見出し">
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-header"></i> <span class="caret"></span></button>
                           <ul class="dropdown-menu" role="menu">
                                 <li><a class="h_btn" href="#" data-dd-hlank="1">h1</a></li>
@@ -78,19 +77,19 @@
                         </div>
                         <div class="btn-group btn-group-sm">
                             <!-- bold button -->
-                            <button id="bold_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-bold"></i></button>
+                            <button id="bold_btn" type="button" class="btn btn-default" data-toggle="tooltip" title="太字・重要なテキスト"><i class="glyphicon glyphicon-bold"></i></button>
                             <!-- italic button -->
-                            <button id="italic_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-italic"></i></button>
+                            <button id="italic_btn" type="button" class="btn btn-default" data-toggle="tooltip" title="斜体・強調するテキスト"><i class="glyphicon glyphicon-italic"></i></button>
                             <!-- ruby button -->
-                            <button id="ruby_btn" type="button" class="btn btn-default">ruby</button>
+                            <button id="ruby_btn" type="button" class="btn btn-default" data-toggle="tooltip" title="ルビをふる">ruby</button>
                         </div>
                         <div class="btn-group btn-group-sm">
                             <!-- link button -->
-                            <button id="link_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-link"></i></button>
+                            <button id="link_btn" type="button" class="btn btn-default" data-toggle="tooltip" title="リンクの挿入"><i class="glyphicon glyphicon-link"></i></button>
                         </div>
                         <div class="btn-group btn-group-sm">
                             <!-- remove button -->
-                            <button id="remove_btn" type="button" class="btn btn-warning" title="remove"><i class="glyphicon glyphicon-remove"></i></button>
+                            <button id="remove_btn" type="button" class="btn btn-warning" data-toggle="tooltip" title="編集中のテキストの消去"><i class="glyphicon glyphicon-remove"></i></button>
                         </div>
                     </div>
                     <div class="row">
@@ -201,7 +200,7 @@
                         <div class="col-md-3 col-xs-3">
                             <!-- componet snippets -->
 
-                            <div class="btn-group-vertical">
+                            <div class="btn-group-vertical" data-toggle="tooltip" title="スニペット（コード片）の挿入。カーソルの位置にスニペットを挿入します">
                                 <button type="button" class="btn btn-default btn-sm dd-snippet-btn" data-dd-snippet-name="page-header">Page header</button>
                                 <!-- Text -->
                                 <div class="btn-group btn-group-sm">
@@ -338,7 +337,7 @@
                             <button type="button" class="btn" disabled="disabled"><i class="glyphicon glyphicon-refresh"></i></button>
                         </div>
                         -->
-                        <div class="btn-group btn-group-sm">
+                        <div class="btn-group btn-group-sm" data-toggle="tooltip" title="表示するレイアウトを選択します">
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-hand-right"></i> テーマを選んでね <span class="caret"></span></button>
                           <ul class="dropdown-menu" role="menu">
                                   <li><a id="theme_default" href="#">でんでんコンバーター横書きデフォルト</a></li>
@@ -348,7 +347,7 @@
                                   <li><a id="theme_plain" href="#">プレーン</a></li>
                           </ul>
                         </div>
-                        <div class="btn-group btn-group-sm">
+                        <div class="btn-group btn-group-sm" data-toggle="tooltip" title="文字の大きさを変更します">
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-font"></i> 文字の大きさ <span class="caret"></span></button>
                           <ul class="dropdown-menu" role="menu">
                             <li><a class="font_size_btn" data-dd-font-size="75" href="#">75%</a></li>
@@ -357,7 +356,7 @@
                           </ul>
                         </div>
                         <div class="btn-group btn-group-sm">
-                            <a id="kanji_btn" class="btn btn-default" href="#"><i class="glyphicon glyphicon-check"></i> 常用漢字のチェック</a>
+                            <a id="kanji_btn" class="btn btn-default" href="#" data-toggle="tooltip" title="常用漢字に含まれない漢字の背景を水色に、人名用漢字の背景をピンク色にハイライトします"><i class="glyphicon glyphicon-check"></i> 常用漢字のチェック</a>
                         </div>
                     </div>
 
@@ -366,7 +365,7 @@
                 <div class="tab-pane" id="code-tab">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-sm">
-                            <button id="select_all_btn" type="button" class="btn btn-default"><i class="glyphicon glyphicon-paperclip"></i> コードを全て選択</button>
+                            <button id="select_all_btn" type="button" class="btn btn-default"  data-toggle="tooltip" title="HTMLのコードを全て選択状態にします"><i class="glyphicon glyphicon-paperclip"></i> コードを全て選択</button>
                         </div>
                     </div>
                     <textarea id="code" readonly="readonly"></textarea>
@@ -376,7 +375,7 @@
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-sm">
                             <!-- remove button -->
-                            <button id="css_remove_btn" type="button" class="btn btn-warning" title="remove"><i class="glyphicon glyphicon-remove"></i></button>
+                            <button id="css_remove_btn" type="button" class="btn btn-warning"  data-toggle="tooltip" title="編集中のテキストの消去"><i class="glyphicon glyphicon-remove"></i></button>
                         </div>
                     </div>
                     <pre id="css_editor">/* 独自に追加したいCSSがあればここに書いてください。プレビューに反映されます  */
@@ -407,7 +406,7 @@
                             Markdown
                           </label>
                         </div>
-                        <span class="help-block">Markdownの変換モードを選んでください</span>
+                        <span class="help-block">Markdownの変換モードを選択します</span>
                       </form>
                       </div> 
                       </div>
@@ -716,17 +715,22 @@
                   localStorage.setItem("previous_data", JSON.stringify(obj));
                 });
 
+                $("#remove_btn").click(function () {
+                    if (confirm("編集中のテキストを消去します。よろしいですか？")) {
+                        ns.editor.setValue("", -1);
+                    }
+                });
+                $("#css_remove_btn").click(function () {
+                    if (confirm("編集中のテキストを消去します。よろしいですか？")) {
+                        ns.css_editor.setValue("", -1);
+                    }
+                });
+
+                // Initialize Bootstrap tooltip
+                $("[data-toggle=tooltip]").tooltip({"container": 'body'});
+
             });
-            $("#remove_btn").click(function () {
-                if (confirm("編集中のテキストを消去します。よろしいですか？")) {
-                    ns.editor.setValue("", -1);
-                }
-            });
-            $("#css_remove_btn").click(function () {
-                if (confirm("編集中のテキストを消去します。よろしいですか？")) {
-                    ns.css_editor.setValue("", -1);
-                }
-            });
+
         </script>
     </body>
 </html>
