@@ -615,14 +615,17 @@
                 $('#image_btn').click(function () {
                   var options = {
                     success: function(files) {
-                      return files[0]['link'];
+                      var link = files[0]['link'];
+                      var snippet = "![代替テキスト](" + link +")";
+                      ns.snippetManager.insertSnippet(ns.editor, snippet);
+                      ns.editor.focus();
                     },
                     linkType: "direct", 
                     multiselect: false,
                     extensions: ['.jpg', '.jpeg', '.JPG', '.JPEG', '.png', '.PNG', '.gif', '.GIF', '.svg'],
                   };
                   var link = Dropbox.choose(options);
-                  console.log(link);
+                  console.log(link)
 
                 });
                 $(".h_btn").click(function () {
