@@ -616,7 +616,7 @@
                   var options = {
                     success: function(files) {
                       var link = files[0]['link'];
-                      var snippet = "![代替テキスト](" + link +")";
+                      var snippet = "![${1:代替テキスト}](" + link +")";
                       ns.snippetManager.insertSnippet(ns.editor, snippet);
                       ns.editor.focus();
                     },
