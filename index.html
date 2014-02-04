@@ -437,7 +437,7 @@
                 <hr />
                 <ul class="list-inline">
                   <li><a id="download-link" class="btn btn-primary" href="#">Download</a></li>
-                  <li><a id="dropbox-saver" href="#" class="dropbox-saver"></a><li>
+                  <li><span id="dropbox-saver-container"></span><li>
                 </ul>
               </div>
             </div><!-- /.modal-content -->
@@ -683,22 +683,42 @@
                 });
         
                 $('#download-modal').on('show.bs.modal', function (e) {
+                    var container = document.getElementById('dropbox-saver-container');
+                    // remove previous Dropbox Saver button
+                    for(var i = container.childNodes.length - 1; i >= 0; i--) {
+                      container.removeChild(container.childNodes[i]);
+                    }
+                    
                     var title = $('#title_input').val();
                     if (!title) {
                         title = "Untitled Document"
                     }
-        
+
                     var filename = title.replace(/\s+|　+/g, '_') + '.txt';
                     $('#download_filename').text(filename);
                     console.log(filename);
+
                     var text = ns.editor.getValue();
+
+                    // create Dropbox Saver button
+                    var data = window.btoa(unescape(encodeURIComponent(text)));
+                    var options = {
+                      files: [
+                        {'url': 'data:text/plain;charset=utrf8,base64,' + data, 'filename': filename}
+                      ],
+                      error: function (errorMessage) {
+                        console.log(errorMessage);
+                      }
+                    };
+                    var button = Dropbox.createSaveButton(options);
+                    container.appendChild(button);
+
+                    // set blob to href
                     var blob = new Blob([text], {
                         "type": "text/plain"
                     });
-                    $('#download-link, #dropbox-saver').attr('href', window.URL.createObjectURL(blob));
+                    $('#download-link').attr('href', window.URL.createObjectURL(blob));
                     $('#download-link').attr('download', filename);
-
-
                 });
 
                 $('.markdown_mode_btn').change(function(){
