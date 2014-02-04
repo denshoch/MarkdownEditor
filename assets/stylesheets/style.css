@@ -80,3 +80,16 @@ body {
   padding-bottom: 9px;
   border-bottom: 1px solid #ccc;
 }
+
+/* Loading
+-------------------------------------------------- */
+#loading_image_container {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  margin-left: -40px;
+  min-height: 600px;
+  min-height: 70vh;
+}
+
+

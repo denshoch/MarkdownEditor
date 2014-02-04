@@ -361,7 +361,9 @@
                             <a id="kanji_btn" class="btn btn-default" href="#" data-toggle="tooltip" title="常用漢字に含まれない漢字の背景を水色に、人名用漢字の背景をピンク色にハイライトします"><i class="glyphicon glyphicon-check"></i> 常用漢字のチェック</a>
                         </div>
                     </div>
-
+                    <div id="loading_image_container">
+                        <img src="assets/images/ajax-loader.gif" alt="" />
+                    </div>
                     <iframe id="preview" seamless="seamless"></iframe>
                 </div>
                 <div class="tab-pane" id="code-tab">
@@ -549,10 +551,14 @@
                         "text": ns.editor.getValue(),
                         "mode": ns.config.request_mode
                     }));
+                    $('#preview').fadeOut();
+                    $('#loading_image_container').fadeIn();
                     XHR.onload = function () {
                         var text = XHR.responseText;
                         ns.code.textContent = text;
                         ns.target_doc.getElementsByTagName('body')[0].innerHTML = text;
+                        $('#loading_image_container').fadeOut();
+                        $('#preview').fadeIn();
                     }
                 }
 
