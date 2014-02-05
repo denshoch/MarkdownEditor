@@ -92,4 +92,27 @@ body {
   min-height: 70vh;
 }
 
+/* Brand
+-------------------------------------------------- */
+@font-face {
+  font-family: "densho-chan";
+  src: url("../fonts/den2font.otf");
+  font-style: normal;
+}
+i.logo {font-family: "densho-chan";
+  font-style: normal;
+}
+i.logo:before { 
+  content: "\e000";
+}
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+  margin-left: 20px;
+}
+.navbar-brand i.logo {
+  position: absolute;
+  margin-left: -32px;
+  font-size: 30px;
+}
+
 
