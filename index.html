@@ -550,14 +550,14 @@
                         "text": ns.editor.getValue(),
                         "mode": ns.config.request_mode
                     }));
-                    $('#preview').fadeOut();
+                    $('#preview').attr('style', 'visibility:hidden;');
                     $('#loading_image_container').fadeIn();
                     XHR.onload = function () {
                         var text = XHR.responseText;
                         ns.code.textContent = text;
                         ns.target_doc.getElementsByTagName('body')[0].innerHTML = text;
                         $('#loading_image_container').fadeOut();
-                        $('#preview').fadeIn();
+                        $('#preview').attr('style', 'visibility:visible');
                     }
                 }
 
