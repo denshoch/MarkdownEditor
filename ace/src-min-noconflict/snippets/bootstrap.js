@@ -48,7 +48,7 @@ snippet initialism\n\
 snippet blockquote--source\n\
 	<blockquote>\n\
 	<p>${1:内容}</p>\n\
-	<div class=\"small\">${2:著者} <cite title=\"${3:作品名}\">${4:作品名}</cite></div>\n\
+	<footer>${2:著者} <cite title=\"${3:作品名}\">${4:作品名}</cite></footer>\n\
 	</blockquote>\n\
 \n\
 snippet blockquote-reverse\n\
@@ -59,7 +59,7 @@ snippet blockquote-reverse\n\
 snippet blockquote-reverse--source\n\
 	<blockquote class=\"blockquote-reverse\">\n\
 	<p>${1:内容}</p>\n\
-	<div class=\"small\">${2:著者} <cite title=\"${3:作品名}\">${4:作品名}</cite></div>\n\
+	<footer>${2:著者} <cite title=\"${3:作品名}\">${4:作品名}</cite></footer>\n\
 	</blockquote>\n\
 \n\
 snippet list-unstyled\n\
@@ -380,7 +380,7 @@ snippet list-group--link--content\n\
 ## Panels\n\
 snippet panel\n\
 	<div class=\"panel panel-default\">\n\
-	<div class=\"panel-heading\">${1:見出し}</div>\n\
+	<div class=\"panel-heading\">${1:ヘッダーテキスト}</div>\n\
 	<div class=\"panel-body\">\n\
 	${2:内容}\n\
 	</div>\n\
