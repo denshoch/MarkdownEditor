@@ -2,42 +2,42 @@ ace.define('ace/snippets/bookstrap-ja', ['require', 'exports', 'module' ], funct
 exports.snippetText = "# Bootstrap\n\
 \n\
 snippet container\n\
-	<div class=\"container\">\n\
+	<div class=\"container\" markdown=\"1\">\n\
 	${1:内容}\n\
 	</div>\n\
 \n\
 snippet lead\n\
-	<p class=\"lead\">${1:テキスト}</p>\n\
+	<p class=\"lead\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet small\n\
 	<small>${1:テキスト}</small>\n\
 \n\
 snippet text-left\n\
-	<p class=\"text-left\">${1:テキスト}</p>\n\
+	<p class=\"text-left\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet text-center\n\
-	<p class=\"text-center\">${1:テキスト}</p>\n\
+	<p class=\"text-center\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet text-right\n\
-	<p class=\"text-right\">${1:テキスト}</p>\n\
+	<p class=\"text-right\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet text-muted\n\
-	<p class=\"text-muted\">${1:テキスト}</p>\n\
+	<p class=\"text-muted\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet text-primary\n\
-	<p class=\"text-primary\">${1:テキスト}</p>\n\
+	<p class=\"text-primary\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet text-success\n\
-	<p class=\"text-success\">${1:テキスト}</p>\n\
+	<p class=\"text-success\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet text-info\n\
-	<p class=\"text-info\">${1:テキスト}</p>\n\
+	<p class=\"text-info\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet text-warning\n\
-	<p class=\"text-warning\">${1:テキスト}</p>\n\
+	<p class=\"text-warning\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet text-danger\n\
-	<p class=\"text-danger\">${1:テキスト}</p>\n\
+	<p class=\"text-danger\" markdown=\"1\">${1:ここにはMarkdownが書けます}</p>\n\
 \n\
 snippet abbr\n\
 	<abbr title=\"${1:正式名称}\">${2:略語}</abbr>\n\
@@ -46,20 +46,20 @@ snippet initialism\n\
 	<abbr title=\"${1:正式名称}\" class=\"initialism\">${2:イニシャル}</abbr>\n\
 \n\
 snippet blockquote--source\n\
-	<blockquote>\n\
-	<p>${1:内容}</p>\n\
-	<footer>${2:著者} <cite title=\"${3:作品名}\">${4:作品名}</cite></footer>\n\
+	<blockquote markdown=\"1\">\n\
+	${1:「いいですよ。その通りです。私は拡張現実を生きています。フルタイムの『ドリーマー』です」}\n\
+	<footer>${2:藤井太洋} <cite title=\"${3:Gene Mapper}\">${4:『Gene Mapper』}</cite></footer>\n\
 	</blockquote>\n\
 \n\
 snippet blockquote-reverse\n\
-	<blockquote class=\"blockquote-reverse\">\n\
-	<p>${1:内容}</p>\n\
+	<blockquote class=\"blockquote-reverse\" markdown=\"1\">\n\
+	${1:「いいですよ。その通りです。私は拡張現実を生きています。フルタイムの『ドリーマー』です」}\n\
 	</blockquote>\n\
 \n\
 snippet blockquote-reverse--source\n\
-	<blockquote class=\"blockquote-reverse\">\n\
-	<p>${1:内容}</p>\n\
-	<footer>${2:著者} <cite title=\"${3:作品名}\">${4:作品名}</cite></footer>\n\
+	<blockquote class=\"blockquote-reverse\" markdown=\"1\">\n\
+	${1:「いいですよ。その通りです。私は拡張現実を生きています。フルタイムの『ドリーマー』です」}\n\
+	<footer>${2:藤井太洋} <cite title=\"${3:Gene Mapper}\">${4:『Gene Mapper』}</cite></footer>\n\
 	</blockquote>\n\
 \n\
 snippet list-unstyled\n\
@@ -327,23 +327,23 @@ snippet page-header\n\
 ## Alerts\n\
 \n\
 snippet alert-success\n\
-	<div class=\"alert alert-success\">\n\
-	${1:メッセージ}\n\
+	<div class=\"alert alert-success\" markdown=\"1\">\n\
+	${1:**成功** ここにはMarkdownが書けます}\n\
 	</div>\n\
 \n\
 snippet alert-info\n\
-	<div class=\"alert alert-info\">\n\
-	${1:メッセージ}\n\
+	<div class=\"alert alert-info\" markdown=\"1\">\n\
+	${1:**情報** ここにはMarkdownが書けます}\n\
 	</div>\n\
 \n\
 snippet alert-warning\n\
-	<div class=\"alert alert-warning\">\n\
-	${1:メッセージ}\n\
+	<div class=\"alert alert-warning\" markdown=\"1\">\n\
+	${1:**警告** ここにはMarkdownが書けます}\n\
 	</div>\n\
 \n\
 snippet alert-danger\n\
-	<div class=\"alert alert-danger\">\n\
-	${1:メッセージ}\n\
+	<div class=\"alert alert-danger\" markdown=\"1\">\n\
+	${1:**危険** ここにはMarkdownが書けます}\n\
 	</div>\n\
 \n\
 ## List group\n\
@@ -379,78 +379,78 @@ snippet list-group--link--content\n\
 \n\
 ## Panels\n\
 snippet panel\n\
-	<div class=\"panel panel-default\">\n\
+	<div class=\"panel panel-default\" markdown=\"1\">\n\
 	<div class=\"panel-heading\">${1:ヘッダーテキスト}</div>\n\
-	<div class=\"panel-body\">\n\
-	${2:内容}\n\
+	<div class=\"panel-body\" markdown=\"1\">\n\
+	${2:ここにはMarkdownが書けます}\n\
 	</div>\n\
 	</div>\n\
 \n\
 snippet panel--title\n\
-	<div class=\"panel panel-default\">\n\
+	<div class=\"panel panel-default\" markdown=\"1\">\n\
 	<div class=\"panel-heading\">\n\
 	<h3 class=\"panel-title\">${1:見出し}</h3>\n\
 	</div>\n\
-	<div class=\"panel-body\">\n\
-	${2:内容}\n\
+	<div class=\"panel-body\" markdown=\"1\">\n\
+	${2:ここにはMarkdownが書けます}\n\
 	</div>\n\
 	</div>\n\
 \n\
 snippet panel--footer\n\
-	<div class=\"panel panel-default\">\n\
-	<div class=\"panel-body\">\n\
-	${1:内容}\n\
+	<div class=\"panel panel-default\" markdown=\"1\">\n\
+	<div class=\"panel-body\" markdown=\"1\">\n\
+	${1:ここにはMarkdownが書けます}\n\
 	</div>\n\
 	<div class=\"panel-footer\">${2:フッター}</div>\n\
 	</div>\n\
 \n\
 snippet panel-primary\n\
-	<div class=\"panel panel-primary\">\n\
+	<div class=\"panel panel-primary\" markdown=\"1\">\n\
 	<div class=\"panel-heading\">\n\
 	<h3 class=\"panel-title\">${1:見出し}</h3>\n\
 	</div>\n\
-	<div class=\"panel-body\">\n\
-	${2:内容}\n\
+	<div class=\"panel-body\" markdown=\"1\">\n\
+	${2:ここにはMarkdownが書けます}\n\
 	</div>\n\
 	</div>\n\
 \n\
 snippet panel-success\n\
-	<div class=\"panel panel-success\">\n\
+	<div class=\"panel panel-success\" markdown=\"1\">\n\
 	<div class=\"panel-heading\">\n\
 	<h3 class=\"panel-title\">${1:見出し}</h3>\n\
 	</div>\n\
-	<div class=\"panel-body\">\n\
-	${2:内容}\n\
+	<div class=\"panel-body\" markdown=\"1\">\n\
+	${2:ここにはMarkdownが書けます}\n\
 	</div>\n\
 	</div>\n\
 \n\
 snippet panel-info\n\
-	<div class=\"panel panel-info\">\n\
+	<div class=\"panel panel-info\" markdown=\"1\">\n\
 	<div class=\"panel-heading\">\n\
 	<h3 class=\"panel-title\">${1:見出し}</h3>\n\
 	</div>\n\
-	<div class=\"panel-body\">\n\
-	${2:内容}\n\
+	<div class=\"panel-body\" markdown=\"1\">\n\
+	${2:ここにはMarkdownが書けます}\n\
 	</div>\n\
 	</div>\n\
 \n\
 snippet panel-warning\n\
-	<div class=\"panel panel-warning\">\n\
+	<div class=\"panel panel-warning\" markdown=\"1\">\n\
 	<div class=\"panel-heading\">\n\
 	<h3 class=\"panel-title\">${1:見出し}</h3>\n\
 	</div>\n\
-	<div class=\"panel-body\">\n\
-	${2:内容}\n\
+	<div class=\"panel-body\" markdown=\"1\">\n\
+	${2:ここにはMarkdownが書けます}\n\
 	</div>\n\
 	</div>\n\
 \n\
 snippet panel-danger\n\
-	<div class=\"panel panel-danger\">\n\
+	<div class=\"panel panel-danger\" markdown=\"1\">\n\
 	<div class=\"panel-heading\">\n\
 	<h3 class=\"panel-title\">${1:見出し}</h3>\n\
 	</div>\n\
-	<div class=\"panel-body\">\n\
-	${2:内容}\n\
+	<div class=\"panel-body\" markdown=\"1\">\n\
+	${2:ここにはMarkdownが書けます}\n\
 	</div>\n\
 	</div>\n\
 \n\
