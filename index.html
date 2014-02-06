@@ -345,7 +345,12 @@
                           <ul class="dropdown-menu" role="menu">
                                   <li><a id="theme_default" href="#">でんでんコンバーター横書きデフォルト</a></li>
                                   <li><a id="theme_default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
-                                  <li><a id="theme_bookstrap" href="#">でんでんブックストラップ（Bootstrap互換）</a></li>
+                                  <li class="divider"></li>
+                                  <li><a id="theme_bookstrap" href="#">でんでんブックストラップ</a></li>
+                                  <li><a id="theme_bookstrap-pink" href="#">でんでんブックストラップ ピンク</a></li>
+                                  <li><a id="theme_bookstrap-orange" href="#">でんでんブックストラップ オレンジ</a></li>
+                                  <li><a id="theme_bookstrap-grass" href="#">でんでんブックストラップ グリーン</a></li>
+                                  <li><a id="theme_bookstrap-purple" href="#">でんでんブックストラップ パープル</a></li>
                                   <li class="divider"></li>
                                   <li><a id="theme_plain" href="#">プレーン</a></li>
                           </ul>
@@ -668,6 +673,16 @@
                         ns.target_doc_css_link.setAttribute('href', './plain.css');
                     } else if (name == 'bookstrap') {
                         ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap.css');
+                    } else if (name == 'bookstrap') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap.css');
+                    } else if (name == 'bookstrap-pink') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-pink.css');
+                    } else if (name == 'bookstrap-orange') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-orange.css');
+                    } else if (name == 'bookstrap-grass') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-grass.css');
+                    } else if (name == 'bookstrap-purple') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-purple.css');
                     } else if (name == 'default') {
                         ns.target_doc_css_link.setAttribute('href', './default.css');
                     } else if (name == 'default_vertical') {
@@ -683,6 +698,22 @@
         
                 $("#theme_bookstrap").click(function () {
                     ns.setPreviewTheme('bookstrap');
+                });
+
+                $("#theme_bookstrap-pink").click(function () {
+                    ns.setPreviewTheme('bookstrap-pink');
+                });
+
+                $("#theme_bookstrap-orange").click(function () {
+                    ns.setPreviewTheme('bookstrap-orange');
+                });
+
+                $("#theme_bookstrap-grass").click(function () {
+                    ns.setPreviewTheme('bookstrap-grass');
+                });
+
+                $("#theme_bookstrap-purple").click(function () {
+                    ns.setPreviewTheme('bookstrap-purple');
                 });
         
                 $("#theme_default").click(function () {
