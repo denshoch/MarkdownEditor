@@ -742,14 +742,47 @@
         </div><!-- /.modal -->
         
         <footer id="footer">
-            <div class="container">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
                 <p class="text-muted"><small>Copyright © 2014 <a href="http://densho.hatenablog.com">電書ちゃんねる</a></small></p>
+              </div>
+              <div class="col-md-6">
+                <ul class="list-inline" style="margin:14px 0;">
+                  
+                  <li><div class="facebook_like" style="position:relative;top:6px;"></div></li>
+                  <li><div class="hatena"></div></li>
+                  <li><div class="tweet"></div></li>
+                  <li><div class="google_plusone"></div></li>
+                </ul>
+              </div>
             </div>
+          </div>
         </footer>
         <!-- js -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="assets/javascripts/jquery.socialbutton-1.9.1.js" type="text/javascript"></script>
         <script src="ace/src-min-noconflict/ace.js" ></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+$(function() {
+   $('.tweet').socialbutton('twitter',{
+    button: 'article-clipper-jp',
+    url: 'http://edit.denshochan.com/',
+   });
+  $('.facebook_like').socialbutton('facebook_like',{
+    button: 'button_count',
+    url: 'http://edit.denshochan.com/',
+    locale: 'ja_JP',
+  });
+  $('.google_plusone').socialbutton('google_plusone');
+  $('.hatena').socialbutton('hatena',{
+    title: '電書ちゃんのでんでんエディター',
+    url: 'http://edit.denshochan.com/',
+  });
+});
+
+        </script>
         <script type="text/javascript">
             var ns = {} || ns;
         
