@@ -347,11 +347,11 @@
                         <div class="btn-group btn-group-sm" data-toggle="tooltip" title="表示するレイアウトを選択します">
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-hand-right"></i> テーマを選んでね <span class="caret"></span></button>
                           <ul class="dropdown-menu" role="menu">
-                                  <li><a id="theme_default" href="#">でんでんコンバーター横書きデフォルト</a></li>
-                                  <li><a id="theme_default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
-                                  <li><a id="theme_bookstrap" href="#">でんでんブックストラップ（Bootstrap互換）</a></li>
+                                  <li><a id="theme_default" class="theme_seletor" data-dd-theme="default" href="#">でんでんコンバーター横書きデフォルト</a></li>
+                                  <li><a id="theme_default_vertical" class="theme_seletor" data-dd-theme="default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
+                                  <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap" href="#">でんでんブックストラップ（Bootstrap互換）</a></li>
                                   <li class="divider"></li>
-                                  <li><a id="theme_plain" href="#">プレーン</a></li>
+                                  <li><a id="theme_plain" class="theme_seletor" data-dd-theme="plain" href="#">プレーン</a></li>
                           </ul>
                         </div>
                         <div class="btn-group btn-group-sm" data-toggle="tooltip" title="文字の大きさを変更します">
@@ -360,6 +360,16 @@
                             <li><a class="font_size_btn" data-dd-font-size="75" href="#">75%</a></li>
                             <li><a class="font_size_btn" data-dd-font-size="100" href="#">100%</a></li>
                             <li><a class="font_size_btn" data-dd-font-size="150" href="#">150%</a></li>
+                          </ul>
+                        </div>
+                        <div class="btn-group btn-group-sm" data-toggle="tooltip" title="画面の幅を変更します">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-resize-horizontal"></i> 画面の幅 <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a class="width_btn" data-dd-width="width-auto" href="#">auto</a></li>
+                            <li><a class="width_btn" data-dd-width="width-xs" href="#">320px</a></li>
+                            <li><a class="width_btn" data-dd-width="width-sm" href="#">768px</a></li>
+                            <li><a class="width_btn" data-dd-width="width-md" href="#">992px</a></li>
+                            <li><a class="width_btn" data-dd-width="width-lg" href="#">1200px</a></li>
                           </ul>
                         </div>
                         <div class="btn-group btn-group-sm">
@@ -808,7 +818,7 @@
                 ns.code = document.getElementById('code');
 
                 ns.initDoc = function() {
-                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /></head><body></body></html>';
+                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /><style type="text/css">.width-auto {width: auto;}.width-xs { width: 320px;}.width-sm { width: 768px;}.width-md { width: 992px;}.width-lg { width: 1200px;}</style></head><body></body></html>';
                   ns.target_doc_head = ns.target_doc.getElementById('head');
                   ns.target_doc_css_link = ns.target_doc.getElementById('css_link');
                   ns.target_doc_custom_css_link = ns.target_doc.getElementById('custom_css_link');
@@ -929,8 +939,16 @@
                     ns.editor.focus();
                 });
                 $('.font_size_btn').click(function(){
+                  $('.font_size_btn').parent('.active').attr('class','');
                   var size = this.getAttribute('data-dd-font-size');
                   ns.target_doc_body.setAttribute('style', 'font-size:' + size + "%;");
+                  this.parentNode.setAttribute('class','active');
+                });
+                $('.width_btn').click(function(){
+                  $('.width_btn').parent('.active').attr('class','');
+                  var width_class = this.getAttribute('data-dd-width');
+                  ns.target_doc_body.setAttribute('class', width_class);
+                  this.parentNode.setAttribute('class','active');
                 });
         
                 $('#preview-link, #code-link').on('shown.bs.tab', function (e) {
@@ -952,22 +970,13 @@
                     }
                 }
 
-                $("#theme_plain").click(function () {
-                    ns.setPreviewTheme('plain');
+                $('.theme_seletor').click(function () {
+                  $('.theme_seletor').parent('.active').attr('class','');
+                  var theme = this.getAttribute('data-dd-theme');
+                  ns.setPreviewTheme(theme);
+                  this.parentNode.setAttribute('class','active');
                 });
-        
-                $("#theme_bookstrap").click(function () {
-                    ns.setPreviewTheme('bookstrap');
-                });
-        
-                $("#theme_default").click(function () {
-                    ns.setPreviewTheme('default');
-                });
-        
-                $("#theme_default_vertical").click(function () {
-                    ns.setPreviewTheme('default_vertical');
-                });
-        
+
                 $("#kanji_btn").click(function () {
                     checkKanji(ns.target_doc_body);
                 });
