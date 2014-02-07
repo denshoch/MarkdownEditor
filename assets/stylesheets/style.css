@@ -80,6 +80,15 @@ body {
   min-height: 70vh;
 }
 
+#credits-tab__container {
+  margin-top: 50px;
+  padding: 10px 6px 10px;
+  border-top: 1px solid #ccc;
+  width: 100%;
+  min-height: 600px;
+  min-height: 70vh;
+}
+
 /* Toolbar
 -------------------------------------------------- */
 
