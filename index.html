@@ -16,7 +16,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:url" content="http://edit.denshochan.com/" />
         <meta property="og:image" content="http://edit.denshochan.com/assets/images/editor_logo.png" />
-        <meta property="og:description" content="あなたの電子書籍づくりをお手伝い。Markdownを書いてプレビューできるちょっと気の利いたウェブエディタ" />
+        <meta property="og:description" content="あなたの電子書籍づくりをお手伝い。Markdownを書いてプレビューできるちょっと気の利いたウェブエディター" />
         <meta property="fb:admins" content="hiroshi.takase" />
     </head>
     <body>
@@ -361,13 +361,8 @@
                                   <li><a id="theme_plain" class="theme_seletor" data-dd-theme="plain" href="#">プレーン</a></li>
                           </ul>
                         </div>
-                        <div class="btn-group btn-group-sm" data-toggle="tooltip" title="文字の大きさを変更します">
-                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-font"></i> 文字の大きさ <span class="caret"></span></button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a class="font_size_btn" data-dd-font-size="75" href="#">75%</a></li>
-                            <li><a class="font_size_btn" data-dd-font-size="100" href="#">100%</a></li>
-                            <li><a class="font_size_btn" data-dd-font-size="150" href="#">150%</a></li>
-                          </ul>
+                        <div class="btn-group btn-group-sm">
+                            <a id="fullscreen_btn" class="btn btn-default" href="#" data-toggle="tooltip" title="フルスクリーンで表示します"><i class="glyphicon glyphicon-fullscreen"></i></a>
                         </div>
                         <div class="btn-group btn-group-sm" data-toggle="tooltip" title="画面の幅を変更します">
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-resize-horizontal"></i> 画面の幅 <span class="caret"></span></button>
@@ -377,6 +372,14 @@
                             <li><a class="width_btn" data-dd-width="width-sm" href="#">768px</a></li>
                             <li><a class="width_btn" data-dd-width="width-md" href="#">992px</a></li>
                             <li><a class="width_btn" data-dd-width="width-lg" href="#">1200px</a></li>
+                          </ul>
+                        </div>
+                        <div class="btn-group btn-group-sm" data-toggle="tooltip" title="文字の大きさを変更します">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-font"></i> 文字の大きさ <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a class="font_size_btn" data-dd-font-size="75" href="#">75%</a></li>
+                            <li><a class="font_size_btn" data-dd-font-size="100" href="#">100%</a></li>
+                            <li><a class="font_size_btn" data-dd-font-size="150" href="#">150%</a></li>
                           </ul>
                         </div>
                         <div class="btn-group btn-group-sm">
@@ -447,7 +450,7 @@
                           <section>
                               
                               <div class="page-header">
-                                  <h2><i class="logo"></i> でんでんエディターの使い方</h2>
+                                  <h2><i class="logo" style="font-size:1.25em;"></i> でんでんエディターの使い方</h2>
                               </div>
                               
                               <ul>
@@ -553,10 +556,12 @@
                               <h3 id="toc_preview">Preview タブ</h3>
                               
                               <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-hand-right"></i> テーマを選んでね </button> HTMLに適用するテーマ（レイアウト）を選択します</p>
-                              
-                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-font"></i> 文字の大きさ</button> 文字の大きさを変更できます</p>
 
                               <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-resize-horizontal"></i> 画面の幅</button> 画面の幅を変更できます</p>
+
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-fullscreen"></i></button> プレビューをフルスクリーンで表示します。<kbd>esc</kbd> ボタンで元にもどります。</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-font"></i> 文字の大きさ</button> 文字の大きさを変更できます</p>
                               
                               <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-check"></i> 常用漢字のチェック</button>                           テキストで使われている表外漢字（常用漢字表に含まれない漢字）と人名用漢字を確認することができます。仮名に直したりルビを振ったりする際の参考にしてください（あくまでも参考です。義務ではありません）。</p>
                               
@@ -714,10 +719,13 @@
                 </div>
                 
             </div>
-            <hr />
-            <div class="alert alert-warning">
-            <strong>注意</strong>  開発中のものなのでこっそり使ってください。拡散禁止です。
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="text-center"><small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i> 思い通りに動かなくても電書ちゃんのことは嫌いにならないでください</small></div>
+              </div>
             </div>
+
         </div>
         </div>
 
@@ -860,7 +868,7 @@ $(function() {
                 ns.code = document.getElementById('code');
 
                 ns.initDoc = function() {
-                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /><style type="text/css">.width-auto {width: auto;}.width-xs { width: 320px;}.width-sm { width: 768px;}.width-md { width: 992px;}.width-lg { width: 1200px;}</style></head><body></body></html>';
+                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /><style type="text/css">.width-auto {width: auto;}.width-xs { width: 320px;}.width-sm { width: 768px;}.width-md { width: 992px;}.width-lg { width: 1200px;} html {margin: 0.5em;} body {margin:auto;}</style></head><body></body></html>';
                   ns.target_doc_head = ns.target_doc.getElementById('head');
                   ns.target_doc_css_link = ns.target_doc.getElementById('css_link');
                   ns.target_doc_custom_css_link = ns.target_doc.getElementById('custom_css_link');
@@ -996,6 +1004,17 @@ $(function() {
                 $('#preview-link, #code-link').on('shown.bs.tab', function (e) {
                     ns.render();
                     ns.applyCustomCSS();
+                });
+
+                $('#fullscreen_btn').click(function() {
+                  var elem = document.getElementById("preview");
+                  if (elem.requestFullScreen) {
+                    elem.requestFullScreen();
+                  } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                  } else if (elem.webkitRequestFullScreen) {
+                    elem.webkitRequestFullScreen();
+                  }
                 });
 
                 ns.setPreviewTheme = function(name) {
