@@ -44,6 +44,7 @@
                 <li><a id="code-link" href="#code-tab" data-toggle="tab"><i class="glyphicon glyphicon-list-alt"></i> Code</a></li>
                 <li><a id="css-editor-link" href="#css-tab" data-toggle="tab"><i class="glyphicon glyphicon-asterisk"></i> Custom CSS</a></li>
                 <li><a id="css-settings-link" href="#settings-tab" data-toggle="tab"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+                <li><a id="css-settings-link" href="#help-tab" data-toggle="tab"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -418,6 +419,199 @@
                       <hr />           
                     </div>
                 </div>
+                <!-- Help tab -->
+                <div class="tab-pane" id="help-tab">
+                    <div id="help-tab__container">
+                      <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                          <section>
+                              
+                              <div class="page-header">
+                                  <h2><i class="logo"></i> でんでんエディターの使い方</h2>
+                              </div>
+                              
+                              <ul>
+                                  <li><a href="#toc_abst">概要</a></li>
+                                  <li><a href="#toc_env">動作環境</a></li>
+                                  <li><a href="#toc_structure">画面構成</a></li>
+                                  <li><a href="#toc_edit">Edit タブ</a></li>
+                                  <li><a href="#toc_preview">Preview タブ</a></li>
+                                  <li><a href="#toc_code">Code タブ</a></li>
+                                  <li><a href="#toc_css">Custom CSS タブ</a></li>
+                                  <li><a href="#toc_settings">Settings タブ</a></li>
+                                  <li><a href="#toc_help">Help タブ</a></li>
+                                  <li><a href="#toc_snippets">便利なスニペット入力！</a></li>
+                              </ul>
+                              
+                              <hr />
+                              
+                              <h3 id="toc_abst">概要</h3>
+                              
+                              <p>でんでんエディタは<a href="http://conv.denshochan.com/markdown">でんでんマークダウン</a>による文書作成を支援するウェブアプリケーションです。でんでんマークダウンで書かれたテキストは、<a href="http://conv.denshochan.com">でんでんコンバーター</a>にアップロードしてEPUBファイルに変換することができます。</p>
+                              
+                              <p>でんでんエディタでは次のことができます。</p>
+                              
+                              <ul>
+                                  <li>テキストの作成</li>
+                                  <li>テキストの保存（ダウンロードまたは<a href="http://dropbox.com/">Dropbox</a>に保存）</li>
+                                  <li>HTML化されたテキストのプレビュー</li>
+                                  <li>HTML化されたテキストのコードビュー</li>
+                                  <li>HTMLに適用するレイアウトの変更</li>
+                                  <li>HTMLに適用するCSSの追記</li>
+                              </ul>
+                              
+                              <p>でんでんマークダウンの記法については、<a href="http://conv.denshochan.com/markdown">でんでんマークダウン</a>のページを参照してください。</p>
+                              
+                              <div class="alert alert-danger">
+                                  
+                                  <p>ただし、<a href="http://conv.denshochan.com/markdown#docbreak">改ページ（ファイル分割）</a>の記法は利用できませんので注意してください。</p>
+                                  
+                              </div>
+                              
+                              <hr />
+                              
+                              <h3 id="toc_env">動作環境</h3>
+                              
+                              <p>Chrome、Safari、Opera (15以降)での利用を推奨します。それ以外のブラウザでは縦書きのレイアウトを適用した場合に表示に問題が発生したり、一部の機能が利用できなかったりする可能性があります。</p>
+                              
+                              <hr />
+                              
+                              <h3 id="toc_structure">画面構成</h3>
+                              
+                              <p>画面の構成と役割を説明します。</p>
+                              
+                              <dl>
+                                  <dt><strong>Edit タブ</strong></dt>
+                                  <dd>テキストの編集に利用します</dd>
+                                  
+                                  <dt><strong>Preview タブ</strong></dt>
+                                  <dd>HTML化されたテキストの表示確認に利用します</dd>
+                                  
+                                  <dt><strong>Code タブ</strong></dt>
+                                  <dd>HTML化されたテキストのコードを表示します</dd>
+                                  
+                                  <dt><strong>Custom CSS タブ</strong></dt>
+                                  <dd>ユーザーが独自に適用したいCSSを記述します</dd>
+                                  
+                                  <dt><strong>Settings タブ</strong></dt>
+                                  <dd>でんでんエディタの設定に使用します</dd>
+                                  
+                                  <dt><strong>Help タブ</strong></dt>
+                                  <dd>使い方の解説です</dd>
+                              </dl>
+                              
+                              <hr />
+                              
+                              <h3 id="toc_edit">Edit タブ</h3>
+                              
+                              <p><strong>保存するファイル名の指定欄</strong> 保存する際のファイル名を指定します</p>
+                              
+                              <p><button type="button" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-floppy-save"></i></button> ファイルを保存します。ダウンロードするかDropboxに保存するか選択できます。</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-step-backward"></i></button> 一つ前の操作に戻ります</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-step-forward"></i></button> 元に戻した操作を一つ先に進めます</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-header"></i></button> カーソルの位置に見出しを挿入します。テキストが選択されていれば、そのテキストを見出しにします。</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-bold"></i></button> カーソルの位置に重要なテキスト（太字）を挿入します。テキストが選択されていれば、そのテキストに対して適用します</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-italic"></i></button>                           カーソルの位置に強調されたテキスト（通常はイタリック体）を挿入します。テキストが選択されていれば、そのテキストに対して適用します</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm">ruby</button> カーソルの位置にルビ付きテキストを挿入します。テキストが選択されていれば、そのテキストに対してルビを振ります。</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-link"></i></button> カーソルの位置にハイパーリンクを挿入します。テキストが選択されていれば、そのテキストに対して対して適用します</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-picture"></i></button> カーソルの位置に画像を挿入します。テキストが選択されていれば、そのテキストを代替テキストにします。<span class="text-danger">画像の挿入にはDropboxのアカウントが必要です。また、選択した画像は一時的にウェブ上に公開されるURLを持つので注意してください。でんでんコンバーターで利用する場合には、アップロードするファイル名に別途置き換えてください。</span></p>
+                              
+                              <p><button type="button" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-remove"></i></button> 編集中のテキストを消去します</p>
+                              
+                              <p><strong>でんでんブックストラップ用スニペットボタン</strong> 画面右側のボタン群です。でんでんブックストラップで使うHTMLの部品を挿入します。Previewでテーマにでんでんブックストラップを指定すると、レイアウトが確認できます。<span class="text-danger">他のテーマを利用する場合には使わないでください</span></p>
+                              
+                              <hr />
+                              
+                              <h3 id="toc_preview">Preview タブ</h3>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-hand-right"></i> テーマを選んでね </button> HTMLに適用するテーマ（レイアウト）を選択します</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-font"></i> 文字の大きさ</button> 文字の大きさを変更できます</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-check"></i> 常用漢字のチェック</button>                           テキストで使われている表外漢字（常用漢字表に含まれない漢字）と人名用漢字を確認することができます。仮名に直したりルビを振ったりする際の参考にしてください（あくまでも参考です。義務ではありません）。</p>
+                              
+                              <ul>
+                                  <li><strong>人名用漢字</strong> ピンク色にハイライトされます。日本における戸籍に子の名として記載できる漢字のうち、常用漢字に含まれないものですが、常用漢字に準じたものとしてそのまま使うこともあります</li>
+                                  <li><strong>表外漢字</strong> 水色にハイライトされます。内閣告示「常用漢字表」で示された現代日本語の漢字に含まれない漢字です。仮名に直したりルビを振るなどの対処を検討してください</li>
+                                  <li><strong>表外漢字の例外</strong> 表外漢字であっても共同通信社記者ハンドブック(第12版)で使うとされた漢字は黄色にハイライトされます。対処の要否は各自検討してください</li>
+                              </ul>
+                              
+                              <p><span class="text-danger">現在の制限事項として、Unicodeのサロゲートペアに含まれる漢字の検出に対応していない点があります。ご了承ください</span></p>
+                              
+                              <hr />
+                              
+                              <h3 id="toc_code">Code タブ</h3>
+                              
+                              <p>テキストから変換されたHTMLのコードを確認できます。編集はできません。</p>
+                              
+                              <p><button type="button" class="btn btn-default btn-sm" ><i class="glyphicon glyphicon-paperclip"></i> コードを全て選択</button> 全てのコードを選択状態にします。コピーして再利用する際に使ってください。</p>
+
+                              <hr />
+                              
+                              <h3 id="toc_css">Custom CSS タブ</h3>
+                              
+                              <p>ここに書かれたCSSも Preview 画面に反映されます。Preview タブでテーマに「プレーン」を選択した状態にすれば、Custom CSSの内容だけでレイアウトすることができます。</p>
+                              
+                              <p><button type="button" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-remove"></i></button> 編集中のテキストを消去します</p>
+                              
+                              <hr />
+                              
+                              <h3 id="toc_settings">Settings タブ</h3>
+                              
+                              <p>でんでんエディターの設定を行ないます。</p>
+                              
+                              <h4>Markdown Mode</h4>
+                              
+                              <p>でんでんマークダウン以外のMarkdown記法も選択できます。次の中から選んでください。</p>
+                              
+                              <ul>
+                                  <li><strong>でんでんマークダウン</strong> このエディタがメインに採用するMarkdown記法です</li>
+                                  <li><strong>Markdown Extra</strong> でんでんマークダウンのベースになったMarkdown記法です。ルビや縦中横が使えない他、脚注の出力コードもでんでんマークダウンとは異なります。<a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></li>
+                                  <li><strong>Markdown</strong> 拡張のない純粋なMarkdown記法です。<a href="http://daringfireball.net/projects/markdown/">http://daringfireball.net/projects/markdown/</a></li>
+                              </ul>
+                              
+                              <hr />
+                              
+                              <h3 id="toc_help">Help タブ</h3>
+                              
+                              <p>このページを表示します。</p>
+
+                              <hr />
+
+                              <h3 id="toc_snippets">便利なスニペット入力！</h3>
+
+                              <p>最後にヒントです。でんでんエディターのスニペット入力はとても便利なので、ちょっと体験してみてください。</p>
+
+                              <p>Edit 画面の任意の位置にカーソルを置いて、<button type="button" class="btn btn-default btn-sm">ruby</button> ボタンを押してみてください。こんな文字が挿入されます。</p>
+
+                              <pre><code>{<mark>親文字</mark>|ルビ文字}
+</code></pre>
+
+                              <p>そして、「親文字」が選択状態になっているので、そのまま文字を入力すると「親文字」の位置に入力した文字が反映されます。仮に「電子書籍」と入力したとしましょう。入力が終わったら<kbd>TAB</kbd>キーを押してみてください。</p>
+
+                              <pre><code>{電子書籍|<mark>ルビ文字</mark>}
+</code></pre>
+                              <p>今度は「ルビ文字」が選択された状態になりました。そのまま「でんししょせき」と入力したら、もう一度<kbd>TAB</kbd>キーを押します。</p>
+
+                              <pre><code>{電子書籍|でんししょせき}<mark>|</mark>
+</code></pre>
+                              
+                              <p>するとカーソルが最後尾に移動しましたね。これで続きの文章を書くことができます。このように、でんでんエディターのスニペットは<kbd>TAB</kbd>キーを使うことで楽に入力ができます。是非使いこなしてください。</p>
+
+                          </section>
+                       </div>
+                      </div>
+                    </div>
+                </div>
+
                 
             </div>
             <hr />
