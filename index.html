@@ -368,7 +368,7 @@
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-resize-horizontal"></i> 画面の幅 <span class="caret"></span></button>
                           <ul class="dropdown-menu" role="menu">
                             <li><a class="width_btn" data-dd-width="width-auto" href="#">auto</a></li>
-                            <li><a class="width_btn" data-dd-width="width-xs" href="#">320px</a></li>
+                            <li><a class="width_btn" data-dd-width="width-xs" href="#">480px</a></li>
                             <li><a class="width_btn" data-dd-width="width-sm" href="#">768px</a></li>
                             <li><a class="width_btn" data-dd-width="width-md" href="#">992px</a></li>
                             <li><a class="width_btn" data-dd-width="width-lg" href="#">1200px</a></li>
@@ -389,7 +389,9 @@
                     <div id="loading_image_container">
                         <img src="assets/images/ajax-loader.gif" alt="" />
                     </div>
-                    <iframe id="preview" seamless="seamless"></iframe>
+                    <div id="preview_container">
+                      <iframe id="preview" seamless="seamless"></iframe>
+                    </div>
                 </div>
                 <div class="tab-pane" id="code-tab">
                     <div class="btn-toolbar" role="toolbar">
@@ -868,7 +870,7 @@ $(function() {
                 ns.code = document.getElementById('code');
 
                 ns.initDoc = function() {
-                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /><style type="text/css">.width-auto {width: auto;}.width-xs { width: 320px;}.width-sm { width: 768px;}.width-md { width: 992px;}.width-lg { width: 1200px;} html {margin: 0.5em;} body {margin:auto;}</style></head><body></body></html>';
+                   ns.target_doc.documentElement.innerHTML = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"><head id="head"><link id="css_link" rel="stylesheet" href="./default.css" /><link id="custom_css_link" rel="stylesheet" href="./plain.css" /><style type="text/css">html {margin: 0.5em;}</style></head><body></body></html>';
                   ns.target_doc_head = ns.target_doc.getElementById('head');
                   ns.target_doc_css_link = ns.target_doc.getElementById('css_link');
                   ns.target_doc_custom_css_link = ns.target_doc.getElementById('custom_css_link');
@@ -997,9 +999,10 @@ $(function() {
                 $('.width_btn').click(function(){
                   $('.width_btn').parent('.active').attr('class','');
                   var width_class = this.getAttribute('data-dd-width');
-                  ns.target_doc_body.setAttribute('class', width_class);
+                  ns.preview.setAttribute('class', width_class);
                   this.parentNode.setAttribute('class','active');
                 });
+                ns.preview.setAttribute('class', 'width-md');
         
                 $('#preview-link, #code-link').on('shown.bs.tab', function (e) {
                     ns.render();
@@ -1007,7 +1010,7 @@ $(function() {
                 });
 
                 $('#fullscreen_btn').click(function() {
-                  var elem = document.getElementById("preview");
+                  var elem = document.getElementById("preview_container");
                   if (elem.requestFullScreen) {
                     elem.requestFullScreen();
                   } else if (elem.mozRequestFullScreen) {
