@@ -356,7 +356,14 @@
                           <ul class="dropdown-menu" role="menu">
                                   <li><a id="theme_default" class="theme_seletor" data-dd-theme="default" href="#">でんでんコンバーター横書きデフォルト</a></li>
                                   <li><a id="theme_default_vertical" class="theme_seletor" data-dd-theme="default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
-                                  <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap" href="#">でんでんブックストラップ（Bootstrap互換）</a></li>
+                                  <li class="divider"></li>
+                                  <li role="presentation" class="dropdown-header">でんでんブックストラップ（Bootstrap互換）</li>
+                                  <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap" href="#">通常</a></li>
+                                  <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap-pink" href="#">ピンク</a></li>
+                                  <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap-orange" href="#">オレンジ</a></li>
+                                  <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap-grass" href="#">緑</a></li>
+                                  <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap-coffee" href="#">茶色</a></li>
+                                  <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap-purple" href="#">紫</a></li>
                                   <li class="divider"></li>
                                   <li><a id="theme_plain" class="theme_seletor" data-dd-theme="plain" href="#">プレーン</a></li>
                           </ul>
@@ -1025,6 +1032,16 @@ $(function() {
                         ns.target_doc_css_link.setAttribute('href', './plain.css');
                     } else if (name == 'bookstrap') {
                         ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap.css');
+                    } else if (name == 'bookstrap-pink') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-pink.css');
+                    } else if (name == 'bookstrap-orange') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-orange.css');
+                    } else if (name == 'bookstrap-grass') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-grass.css');
+                    } else if (name == 'bookstrap-coffee') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-coffee.css');
+                    } else if (name == 'bookstrap-purple') {
+                        ns.target_doc_css_link.setAttribute('href', 'http://denshoch.github.io/bookstrap/build/stylesheets/bookstrap-purple.css');
                     } else if (name == 'default') {
                         ns.target_doc_css_link.setAttribute('href', './default.css');
                     } else if (name == 'default_vertical') {
