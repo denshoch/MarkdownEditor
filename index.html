@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
+<!--
 
+                   `.--::://///:-.                          
+               `-://++++++////++++//-:::-.                  
+              ./++////////////////+++++++/:.                
+        `.`-::://////////////////+o///////++.               
+     -/+++//++///////////////////+++//////:.  `             
+   `+++/++/////////////////////////++/++/.     `            
+   /+///+/////////////////////////++o+-./:    .:.           
+  ./////////////////////////++++++/:-+:  /+:/+ooo:          
+  -///+++///+//+////++++++++++++:/-  -o+/+ooooooos`         
+ `-//+//////+/+/+++++oooo+++++o+/+++oooysooooooooo+`        
+  -/+///////oo/.:ooooo/:+ooosoooo+oossoo-+ysoooooooo-       
+  `:+:+//+++oo/``.:/+oo/``./--:+shy/:oso-`sm+oooooooo/      
+   -+/+++osoo//.`   ``..` -` .oddmmy:/oo+`ym:.+oooooooo.    
+   `o+oooosoo/..-.`      `` .o/ddMMo:+ooosdho  -oooooooo.   
+    +osooooo+o...``         ``.::oyo-+ooodds.`   /oooooo+`  
+    -ssoosso-/o/odhs:         ` ...--:oosdm/      :oooooo:  
+    .sooooyo/::.:hdNm/           `.. .sosh-        :osoooo  
+    `ooooosss-```.-syo-`          ``.oooo:`         /soooo` 
+     +oooooshd+.   :.--.   ``    ``-:o:+--.`        `ooooo` 
+     :ooooooohho.   `..``     ` `````.:``````        +oooo  
+     -:+ooosss//`...``..`    `-:+:. ``o      ``      :ooo/  
+     -+oooooso+.   `-:-:--://++oo// `+h- `` ``       /ooo`  
+    `:oooooo//o-    ..--++ooosooo/ssyyys````.       `ooo/   
+    `+ooooo/ `:o.  `..../s+oossooo/+/oyho.` ``      /oso    
+    .+ooooo`   ./`   `---/--:+yso/    .+h+  `.     .o++`    
+    -ooooo/           `       ohs       :do.``.    /+.      
+    -soooo`         `         :hy        /md+``.   +`       
+     /+oo+         `        `` hm:      `-sdm+  ```.        
+     -`/o+        `        `` `odh`      `-+ddy-```.-`      
+      ` -+.      `        `` ``.ymo       ``hdddyo//:`      
+          `     `       `-```` `./o`      . smddmddy+`      
+                       `/h/`  `````.      .+hs+--.`         
+               :/:    `  `-.````...+-   ` .-`               
+              .hhhoy:               .o+oyss                 
+              /ysyhh.                yhhyhy`                
+              +ysyho                 +ssyyy`                
+              -syys.                 :yyhy/                 
+                ``                    .:-`                  
+                                                 
+            ちょっと、ソースコード覗かないでよ、このスケベ！
+
+-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" xmlns:og="http://ogp.me/ns#">
     <head>
         <meta charset="utf-8" />
@@ -33,7 +76,7 @@
 
             <a class="navbar-brand" href="#"><i class="logo"></i> でんでんエディター</a> 
           </div>
-          <p class="navbar-text navbar-right"><small style="color:crimson;">ver 0.9.0</small></p>  
+          <p class="navbar-text navbar-right"><small style="color:crimson;">ver 0.9.1</small></p>  
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="http://conv.denshochan.com/" target="_blank">でんでんコンバーター</a></li>
@@ -214,11 +257,11 @@
                         <div class="col-md-3 col-xs-3">
                             <!-- componet snippets -->
 
-                            <div class="btn-group-vertical" data-toggle="tooltip" title="スニペット（コード片）の挿入。カーソルの位置にスニペットを挿入します">
-                                <button type="button" class="btn btn-default btn-sm dd-snippet-btn" data-dd-snippet-name="page-header">ページヘッダ</button>
+                            <div class="btn-group-vertical" data-toggle="tooltip" title="【将来機能】スニペット（コード片）の挿入。カーソルの位置にスニペットを挿入します。現在は利用できません">
+                                <button type="button" class="btn btn-default btn-sm dd-snippet-btn" data-dd-snippet-name="page-header" disabled="disabled">ページヘッダ</button>
                                 <!-- Text -->
                                 <div class="btn-group btn-group-sm">
-                                  <button id="text_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="text_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       テキスト
                                       <span class="caret"></span>
                                   </button>
@@ -236,7 +279,7 @@
                                   </ul>
                                 </div>
                                 <div class="btn-group btn-group-sm">
-                                  <button id="bq_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="bq_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       引用
                                       <span class="caret"></span>
                                   </button>
@@ -247,7 +290,7 @@
                                 </div>
                                 <!-- Lists -->
                                 <div class="btn-group btn-group-sm">
-                                  <button id="list_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="list_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       リスト（箇条書き）
                                       <span class="caret"></span>
                                   </button>
@@ -258,7 +301,7 @@
                                 </div>
                                 <!-- Tables -->
                                 <div class="btn-group btn-group-sm">
-                                  <button id="table_group_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="table_group_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       表
                                       <span class="caret"></span>
                                   </button>
@@ -271,7 +314,7 @@
                                 </div>
                                 <!-- Labels -->
                                 <div class="btn-group btn-group-sm">
-                                  <button id="label_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="label_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       ラベル
                                       <span class="caret"></span>
                                   </button>
@@ -286,7 +329,7 @@
                                 </div>
                                 <!-- Alerts -->
                                 <div class="btn-group btn-group-sm">
-                                  <button id="alerts_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="alerts_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       注意書き
                                       <span class="caret"></span>
                                   </button>
@@ -299,7 +342,7 @@
                                 </div>
                                 <!-- List Group -->
                                 <div class="btn-group btn-group-sm">
-                                  <button id="list_group_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="list_group_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       リストグループ
                                       <span class="caret"></span>
                                   </button>
@@ -311,11 +354,11 @@
                                 </div>
                                 <!-- Panels -->
                                 <div class="btn-group btn-group-sm">
-                                  <button id="panel_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="panel_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       パネル
                                       <span class="caret"></span>
                                   </button>
-                                  <ul class="dropdown-menu" role="menu" aria-labelledby="panel_btn_drop">
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="panel_btn_drop" disabled="disabled">
                                     <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel">通常</a></li>
                                     <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel--title">ヘッダあり</a></li>
                                     <li><a href="#" class="dd-snippet-btn" data-dd-snippet-name="panel--footer">ヘッダ・見出しあり</a></li>
@@ -328,7 +371,7 @@
                                 </div>
                                 <!-- Wells -->
                                 <div class="btn-group btn-group-sm">
-                                  <button id="well_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                  <button id="well_btn_drop" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                                       囲み
                                       <span class="caret"></span>
                                   </button>
@@ -339,7 +382,8 @@
                                   </ul>
                                 </div>
 
-                                <p class="text-muted small"><strong>でんでんブックストラップ</strong> 用のスニペットを挿入します</p>
+                                <!-- <p class="text-muted small"><strong>でんでんブックストラップ</strong> 用のスニペットを挿入します</p> -->
+
                             </div>
                         </div>
                     </div>
@@ -356,6 +400,7 @@
                           <ul class="dropdown-menu" role="menu">
                                   <li><a id="theme_default" class="theme_seletor" data-dd-theme="default" href="#">でんでんコンバーター横書きデフォルト</a></li>
                                   <li><a id="theme_default_vertical" class="theme_seletor" data-dd-theme="default_vertical" href="#">でんでんコンバーター縦書きデフォルト</a></li>
+                                  <!-- 
                                   <li class="divider"></li>
                                   <li role="presentation" class="dropdown-header">でんでんブックストラップ（Bootstrap互換）</li>
                                   <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap" href="#">通常</a></li>
@@ -364,6 +409,7 @@
                                   <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap-grass" href="#">緑</a></li>
                                   <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap-coffee" href="#">茶色</a></li>
                                   <li><a id="theme_bookstrap" class="theme_seletor" data-dd-theme="bookstrap-purple" href="#">紫</a></li>
+                                  -->
                                   <li class="divider"></li>
                                   <li><a id="theme_plain" class="theme_seletor" data-dd-theme="plain" href="#">プレーン</a></li>
                           </ul>
@@ -558,7 +604,9 @@
                               
                               <p><button type="button" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-remove"></i></button> 編集中のテキストを消去します</p>
                               
+                              <!--
                               <p><strong>でんでんブックストラップ用スニペットボタン</strong> 画面右側のボタン群です。でんでんブックストラップで使うHTMLの部品を挿入します。Previewでテーマにでんでんブックストラップを指定すると、レイアウトが確認できます。<span class="text-danger">他のテーマを利用する場合には使わないでください</span></p>
+                              -->
                               
                               <hr />
                               
@@ -657,7 +705,6 @@
                                       </div>
                                   </div>
                               </div>
-
                           </section>
                        </div>
                       </div>
@@ -669,58 +716,73 @@
                       <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                           <section>
-<h2>DenDen Editor</h2> 
-
-<p><small>Copyright (c) 2014, Densho Channel</small></p>
-
-<p>でんでんエディターが利用しているソフトウェアやサービスを紹介します。</p>
-
-<h3>Softwares</h3>
-
-<ul>
-<li><strong><a href="http://ace.c9.io/">Ace (Ajax.org Cloud9 Editor)</a></strong> Copyright (c) 2010, Ajax.org B.V.</li>
-<li><strong>DenDen Markdown</strong> Copyright (c) 2013-2014 Densho Channel</li>
-<li><strong><a href="http://michelf.ca">PHP Markdown Lib</a></strong> Copyright (c) 2004-2013 Michel Fortin</li>
-<li><strong><a href="http://daringfireball.net/">Markdown</a></strong> Copyright (c) 2003-2006 John Gruber</li>
-<li><strong><a href="http://getbootstrap.com/">Bootstrap</a></strong> Copyright (c) 2011-2014 Twitter, Inc</li>
-<li><strong><a href="http://jquery.com/">jQuery</a></strong> Copyright 2014 jQuery Foundation and other contributors</li>
-</ul>
-
-<h3>Services</h3>
-
-<ul>
-<li><strong><a href="https://github.com">Github</a></strong> by GitHub</li>
-<li><strong><a href="https://www.heroku.com/">Heroku</a></strong> by Heroku</li>
-</ul>
-
-<h3>Contact</h3>
-
-<p>お問い合せは以下までお願いします。</p>
-
-<div class="container">
-<dl>
-  <dt>twitter</dt>
-  <dd><a href="http://twitter.com/lost_and_found">@lost_and_found</a></dd>
-  <dt>mail</dt>
-  <dd><a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x69;&#110;&#102;&#x6f;&#x40;&#100;&#101;&#x6e;&#x73;&#104;&#111;&#x63;&#x68;&#97;&#110;&#x2e;&#x63;&#111;&#109;">&#x69;&#110;&#102;&#x6f;&#x40;&#100;&#101;&#x6e;&#x73;&#104;&#111;&#x63;&#x68;&#97;&#110;&#x2e;&#x63;&#111;&#109;</a></dd>
-</dl>
-</div>
-
-<div class="panel panel-default">
-<div class="panel-body">
-<div class="media">
-  <span class="pull-left">
-    <img alt="" class="media-object" width="64" height="64" src="assets/images/small06.png" />
-  </span>
-  <div class="media-body">
-    <h4 class="media-heading">電書ちゃん</h4>
-    <p><a href="https://www.facebook.com/groups/dendenconverter/">facebookコミュニティ</a>もあるのよ。気軽に参加してね</p>
-  </div>
-</div>
-</div>
-</div>
-
-</section>
+                              <h2>DenDen Editor</h2>
+                          
+                              <p>
+                                  <small>Copyright (c) 2014, Densho Channel</small>
+                              </p>
+                          
+                              <p>でんでんエディターが利用しているソフトウェアやサービスを紹介します。</p>
+                          
+                              <h3>Softwares</h3>
+                          
+                              <ul>
+                                  <li><strong><a href="http://ace.c9.io/">Ace (Ajax.org Cloud9 Editor)</a></strong> Copyright
+                                      (c) 2010, Ajax.org B.V.</li>
+                                  <li><strong>DenDen Markdown</strong> Copyright (c) 2013-2014 Densho Channel</li>
+                                  <li><strong><a href="http://michelf.ca">PHP Markdown Lib</a></strong> Copyright (c)
+                                      2004-2013 Michel Fortin</li>
+                                  <li><strong><a href="http://daringfireball.net/">Markdown</a></strong> Copyright (c)
+                                      2003-2006 John Gruber</li>
+                                  <li><strong><a href="http://getbootstrap.com/">Bootstrap</a></strong> Copyright (c)
+                                      2011-2014 Twitter, Inc</li>
+                                  <li><strong><a href="http://jquery.com/">jQuery</a></strong> Copyright 2014 jQuery
+                                      Foundation and other contributors</li>
+                              </ul>
+                          
+                              <h3>Services</h3>
+                          
+                              <ul>
+                                  <li><strong><a href="https://github.com">Github</a></strong> by GitHub</li>
+                                  <li><strong><a href="https://www.heroku.com/">Heroku</a></strong> by Heroku</li>
+                              </ul>
+                          
+                              <h3>Contact</h3>
+                          
+                              <p>お問い合せは以下までお願いします。</p>
+                          
+                              <div class="container">
+                                  <dl>
+                                      <dt>twitter</dt>
+                                      <dd>
+                                          <a href="http://twitter.com/lost_and_found">@lost_and_found</a>
+                                      </dd>
+                                      <dt>mail</dt>
+                                      <dd>
+                                          <a
+                                              href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x69;&#110;&#102;&#x6f;&#x40;&#100;&#101;&#x6e;&#x73;&#104;&#111;&#x63;&#x68;&#97;&#110;&#x2e;&#x63;&#111;&#109;"
+                                              >&#x69;&#110;&#102;&#x6f;&#x40;&#100;&#101;&#x6e;&#x73;&#104;&#111;&#x63;&#x68;&#97;&#110;&#x2e;&#x63;&#111;&#109;</a>
+                                      </dd>
+                                  </dl>
+                              </div>
+                          
+                              <div class="panel panel-default">
+                                  <div class="panel-body">
+                                      <div class="media">
+                                          <span class="pull-left">
+                                              <img alt="" class="media-object" width="64" height="64"
+                                                  src="assets/images/small06.png"/>
+                                          </span>
+                                          <div class="media-body">
+                                              <h4 class="media-heading">電書ちゃん</h4>
+                                              <p><a href="https://www.facebook.com/groups/dendenconverter/"
+                                                  >facebookコミュニティ</a>もあるのよ。気軽に参加してね</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          
+                          </section>
                         </div> 
                       </div>
                       <hr />           
@@ -731,7 +793,7 @@
 
             <div class="panel panel-default">
               <div class="panel-body">
-                <div class="text-center"><small class="text-muted"><i class="glyphicon glyphicon-asterisk"></i> 思い通りに動かなくても電書ちゃんのことは嫌いにならないでください</small></div>
+                <div class="text-center"><small class="text-muted"> <a class="btn btn-sm" href="http://www.amazon.co.jp/registry/wishlist/3KXWHIQ681OPE" target="_blank"><i class="glyphicon glyphicon-gift"></i> 電書ちゃんのご機嫌を取る</a></small></div>
               </div>
             </div>
 
@@ -1133,6 +1195,9 @@ $(function() {
                         ns.css_editor.setValue("", -1);
                     }
                 });
+
+                ns.preview.setAttribute('class', 'width-sm');
+                ns.target_doc_body.setAttribute('style', 'font-size:100%;');
 
                 // Initialize Bootstrap tooltip
                 $("[data-toggle=tooltip]").tooltip({"container": 'body'});
