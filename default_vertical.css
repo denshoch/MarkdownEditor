@@ -3,6 +3,7 @@
 @namespace "http://www.w3.org/1999/xhtml";
 @namespace epub "http://www.idpf.org/2007/ops";
 html {
+  -ms-writing-mode: tb-rl;
   -epub-writing-mode: vertical-rl;
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
@@ -127,7 +128,9 @@ rt {
 .tcy {
   -epub-text-combine: horizontal;
   -webkit-text-combine: horizontal;
+  -ms-text-combine-horizontal: all;
   text-combine-horizontal: all;
+  text-combine-upright: all;
 }
 
 .sideways {
@@ -140,7 +143,9 @@ rt {
   -webkit-text-orientation: upright;
   -epub-text-combine: horizontal;
   -webkit-text-combine: horizontal;
+  -ms-text-combine-horizontal: all;
   text-combine-horizontal: all;
+  text-combine-upright: all;
 }
 
 .pagenum {
@@ -166,6 +171,10 @@ a.noteref {
   line-height: 1;
   vertical-align: super;
   -epub-text-combine: horizontal;
+  -webkit-text-combine: horizontal;
+  -ms-text-combine-horizontal: all;
+  text-combine-horizontal: all;
+  text-combine-upright: all;
 }
 a.noteref:before {
   content: "[";
@@ -212,6 +221,12 @@ a {
 
 u {
   text-decoration: overline;
+}
+
+em {
+  font-style: normal;
+  -epub-text-emphasis-style: filled sesame;
+  text-emphasis-style: filled sesame;
 }
 
 @media print {
