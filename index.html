@@ -87,7 +87,7 @@
 
             <a class="navbar-brand" href="#"><i class="logo"></i> でんでんエディター</a> 
           </div>
-          <p class="navbar-text navbar-right"><small style="color:crimson;">ver 0.9.1</small></p>  
+          <p class="navbar-text navbar-right"><small style="color:crimson;">ver 0.9.2</small></p>  
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="http://conv.denshochan.com/" target="_blank">でんでんコンバーター</a></li>
@@ -503,6 +503,17 @@
                           </label>
                         </div>
                         <span class="help-block">Markdownの変換モードを選択します</span>
+                        <h3>Options <small>でんでんマークダウンのみ有効</small></h3>
+                          <div class="checkbox">
+                            <label>
+                              <input id="opt_btn--autotcy" type="checkbox" checked> 自動縦中横を有効にする
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                              <input id="opt_btn--autotextorientation" type="checkbox" checked> 縦書きの文字の向きを補正する
+                            </label>
+                          </div>
                       </form>
                       </div> 
                       </div>
@@ -881,9 +892,11 @@ $(function() {
         
             $(function () {
                 ns.config = {}
-                ns.config.request_uri = "http://denden-api-md-tmp.herokuapp.com/markdown";
+                ns.config.request_uri = "https://denden-api.herokuapp.com/markdown";
                 ns.config.request_method = "POST";
                 ns.config.request_mode = "denden";
+                ns.config.request_autotcy = true;
+                ns.config.request_autotextorientation = true;
 
                 // editor setup
                 ns.editor = ace.edit("editor");
@@ -966,7 +979,10 @@ $(function() {
                     XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     XHR.send(JSON.stringify({
                         "text": ns.editor.getValue(),
-                        "mode": ns.config.request_mode
+                        "mode": ns.config.request_mode,
+                        "autoTcy": ns.config.request_autotcy,
+                        "tcyDigit": 2,
+                        "autoTextOrientaion": ns.config.request_autotextorientation
                     }));
                     $('#preview').attr('style', 'visibility:hidden;');
                     $('#loading_image_container').fadeIn();
@@ -1183,11 +1199,26 @@ $(function() {
                     $('#download-link').attr('download', filename);
                 });
 
+                // Markdowモード
                 $('.markdown_mode_btn').change(function(){
                     var v = $(this).attr('value');
                     console.log(v);
                     ns.config.request_mode = v;
                     console.log(ns.config.request_mode);
+                });
+
+                // オプション
+                $('#opt_btn--autotcy').change(function(){
+                    var v = $(this).prop('checked');
+                    //console.log(v);
+                    ns.config.request_autotcy = v;
+                    //console.log(ns.config.request_autotcy);
+                });
+                $('#opt_btn--autotextorientation').change(function(){
+                    var v = $(this).prop('checked');
+                    //console.log(v);
+                    ns.config.request_autotextorientation = v;
+                    //console.log(ns.config.request_autotextorientation);
                 });
                 $(window).bind("beforeunload", function() {
                   var obj = {
