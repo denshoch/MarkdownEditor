@@ -509,6 +509,11 @@
                               <input id="opt_btn--autotcy" type="checkbox" checked> 自動縦中横を有効にする
                             </label>
                           </div>
+                          桁数 <select id="opt_tcydigit" class="form-control-sm" style="width:100px">
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
                           <div class="checkbox">
                             <label>
                               <input id="opt_btn--autotextorientation" type="checkbox" checked> 縦書きの文字の向きを補正する
@@ -896,6 +901,7 @@ $(function() {
                 ns.config.request_method = "POST";
                 ns.config.request_mode = "denden";
                 ns.config.request_autotcy = true;
+                ns.config.request_tcydigit = 2;
                 ns.config.request_autotextorientation = true;
 
                 // editor setup
@@ -981,7 +987,7 @@ $(function() {
                         "text": ns.editor.getValue(),
                         "mode": ns.config.request_mode,
                         "autoTcy": ns.config.request_autotcy,
-                        "tcyDigit": 2,
+                        "tcyDigit": ns.config.request_tcydigit,
                         "autoTextOrientaion": ns.config.request_autotextorientation
                     }));
                     $('#preview').attr('style', 'visibility:hidden;');
@@ -1213,6 +1219,12 @@ $(function() {
                     //console.log(v);
                     ns.config.request_autotcy = v;
                     //console.log(ns.config.request_autotcy);
+                });
+                $('#opt_tcydigit').change(function(){
+                    var v = $(this).val();
+                    console.log(v);
+                    ns.config.request_tcydigit = Number(v);
+                    //console.log(ns.config.request_autotextorientation);
                 });
                 $('#opt_btn--autotextorientation').change(function(){
                     var v = $(this).prop('checked');
