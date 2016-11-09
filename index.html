@@ -87,7 +87,7 @@
 
             <a class="navbar-brand" href="#"><i class="logo"></i> でんでんエディター</a> 
           </div>
-          <p class="navbar-text navbar-right"><small style="color:crimson;">ver 0.9.1</small></p>  
+          <p class="navbar-text navbar-right"><small style="color:crimson;">ver 0.9.2</small></p>  
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="http://conv.denshochan.com/" target="_blank">でんでんコンバーター</a></li>
@@ -503,6 +503,22 @@
                           </label>
                         </div>
                         <span class="help-block">Markdownの変換モードを選択します</span>
+                        <h3>Options <small>でんでんマークダウンのみ有効</small></h3>
+                          <div class="checkbox">
+                            <label>
+                              <input id="opt_btn--autotcy" type="checkbox" checked> 自動縦中横を有効にする
+                            </label>
+                          </div>
+                          桁数 <select id="opt_tcydigit" class="form-control-sm" style="width:100px">
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                          <div class="checkbox">
+                            <label>
+                              <input id="opt_btn--autotextorientation" type="checkbox" checked> 縦書きの文字の向きを補正する
+                            </label>
+                          </div>
                       </form>
                       </div> 
                       </div>
@@ -672,6 +688,19 @@
                                   <li><strong>でんでんマークダウン</strong> このエディターがメインに採用するMarkdown記法です</li>
                                   <li><strong>Markdown Extra</strong> でんでんマークダウンのベースになったMarkdown記法です。ルビや縦中横が使えない他、脚注の出力コードもでんでんマークダウンとは異なります。<a href="http://michelf.ca/projects/php-markdown/extra/">http://michelf.ca/projects/php-markdown/extra/</a></li>
                                   <li><strong>Markdown</strong> 拡張のない純粋なMarkdown記法です。<a href="http://daringfireball.net/projects/markdown/">http://daringfireball.net/projects/markdown/</a></li>
+                              </ul>
+
+                              <h4>オプション</h4>
+
+                              <p>でんでんマークダウンのオプション機能を選択します。Markdown Modeが<strong>でんでんマークダウン</strong>の時のみ有効です。</p>
+
+                              <ul>
+                                <li><strong>自動縦中横を有効にする</strong>
+                                  連続する数字と!?を自動的に縦中横にします。</li>
+                                <li><strong>桁数</strong>
+                                  連続する数字を何桁まで縦中横にするか指定します。</li>
+                                <li><strong>縦書きの文字の向きを補正する</strong>
+                                  縦書きにした時に一部の文字や記号などの向きを日本人にとって自然になるように補正します。</li>
                               </ul>
                               
                               <hr />
@@ -881,9 +910,12 @@ $(function() {
         
             $(function () {
                 ns.config = {}
-                ns.config.request_uri = "http://denden-api-md-tmp.herokuapp.com/markdown";
+                ns.config.request_uri = "https://denden-api.herokuapp.com/markdown";
                 ns.config.request_method = "POST";
                 ns.config.request_mode = "denden";
+                ns.config.request_autotcy = true;
+                ns.config.request_tcydigit = 2;
+                ns.config.request_autotextorientation = true;
 
                 // editor setup
                 ns.editor = ace.edit("editor");
@@ -966,7 +998,10 @@ $(function() {
                     XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     XHR.send(JSON.stringify({
                         "text": ns.editor.getValue(),
-                        "mode": ns.config.request_mode
+                        "mode": ns.config.request_mode,
+                        "autoTcy": ns.config.request_autotcy,
+                        "tcyDigit": ns.config.request_tcydigit,
+                        "autoTextOrientaion": ns.config.request_autotextorientation
                     }));
                     $('#preview').attr('style', 'visibility:hidden;');
                     $('#loading_image_container').fadeIn();
@@ -1183,11 +1218,32 @@ $(function() {
                     $('#download-link').attr('download', filename);
                 });
 
+                // Markdowモード
                 $('.markdown_mode_btn').change(function(){
                     var v = $(this).attr('value');
                     console.log(v);
                     ns.config.request_mode = v;
                     console.log(ns.config.request_mode);
+                });
+
+                // オプション
+                $('#opt_btn--autotcy').change(function(){
+                    var v = $(this).prop('checked');
+                    //console.log(v);
+                    ns.config.request_autotcy = v;
+                    //console.log(ns.config.request_autotcy);
+                });
+                $('#opt_tcydigit').change(function(){
+                    var v = $(this).val();
+                    console.log(v);
+                    ns.config.request_tcydigit = Number(v);
+                    //console.log(ns.config.request_autotextorientation);
+                });
+                $('#opt_btn--autotextorientation').change(function(){
+                    var v = $(this).prop('checked');
+                    //console.log(v);
+                    ns.config.request_autotextorientation = v;
+                    //console.log(ns.config.request_autotextorientation);
                 });
                 $(window).bind("beforeunload", function() {
                   var obj = {
