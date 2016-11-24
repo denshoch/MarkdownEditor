@@ -190,6 +190,24 @@ nav#toc ol, nav#landmarks ol, nav#loi ol, nav#lot ol, nav#page-list ol {
   margin-left: 1em;
 }
 
+// Alignment
+// -------------------------
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-pre-wrap       { white-space: pre-wrap; }
+
+// Hide text
+// -------------------------
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
 @media print {
   h1 {
     page-break-before: always;
