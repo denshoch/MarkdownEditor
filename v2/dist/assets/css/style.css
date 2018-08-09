@@ -1,0 +1,16 @@
+.hide {
+  display: none; }
+
+.label.is-inline {
+  display: inline-block;
+  margin: 0 .5rem;
+  line-height: 1.1; }
+
+.radio.is-small, .checkbox.is-small {
+  font-size: .75rem; }
+
+.field.is-flex {
+  display: flex; }
+
+.field.is-flex .control {
+  display: block; }

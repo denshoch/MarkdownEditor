@@ -996,18 +996,46 @@ $(function() {
                 ns.render = function(){
                     var XHR = new XMLHttpRequest();
                     XHR.open(ns.config.request_method, ns.config.request_uri);
+                    XHR.timeout = 2000;
                     XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    XHR.send(JSON.stringify({
-                        "text": ns.editor.getValue(),
-                        "mode": ns.config.request_mode,
-                        "autoTcy": ns.config.request_autotcy,
-                        "tcyDigit": ns.config.request_tcydigit,
-                        "autoTextOrientaion": ns.config.request_autotextorientation
-                    }));
+
+                    try {
+
+                        XHR.send(JSON.stringify({
+                            "text": ns.editor.getValue(),
+                            "mode": ns.config.request_mode,
+                            "autoTcy": ns.config.request_autotcy,
+                            "tcyDigit": ns.config.request_tcydigit,
+                            "autoTextOrientaion": ns.config.request_autotextorientation
+                        }));
+
+                    } catch (e) {
+                        var text = '<p><b style="color:red">サーバーが応答しません</b></p>';
+                        ns.code.textContent = text;
+                        ns.target_doc.getElementsByTagName('body')[0].innerHTML = text;
+                        $('#loading_image_container').fadeOut();
+                        $('#preview').attr('style', 'visibility:visible');
+                    }
+
                     $('#preview').attr('style', 'visibility:hidden;');
                     $('#loading_image_container').fadeIn();
                     XHR.onload = function () {
                         var text = XHR.responseText;
+                        ns.code.textContent = text;
+                        ns.target_doc.getElementsByTagName('body')[0].innerHTML = text;
+                        $('#loading_image_container').fadeOut();
+                        $('#preview').attr('style', 'visibility:visible');
+                    }
+                    XHR.onerror = function() {
+                        console.log(XHR.status);
+                        var text = '<p><b style="color:red">変換に失敗しました</b></p>';
+                        ns.code.textContent = text;
+                        ns.target_doc.getElementsByTagName('body')[0].innerHTML = text;
+                        $('#loading_image_container').fadeOut();
+                        $('#preview').attr('style', 'visibility:visible');
+                    }
+                    XHR.ontimeout = function () {
+                        var text = '<p><b style="color:red">Reqest Timeout</b></p>';
                         ns.code.textContent = text;
                         ns.target_doc.getElementsByTagName('body')[0].innerHTML = text;
                         $('#loading_image_container').fadeOut();
