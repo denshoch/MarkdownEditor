@@ -996,7 +996,7 @@ $(function() {
                 ns.render = function(){
                     var XHR = new XMLHttpRequest();
                     XHR.open(ns.config.request_method, ns.config.request_uri);
-                    XHR.timeout = 2000;
+                    XHR.timeout = 6000;
                     XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                     try {
