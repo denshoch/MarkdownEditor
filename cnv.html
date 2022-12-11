@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form action="https://ddconv-322qzzmyga-an.a.run.app" method="post" enctype="multipart/form-data" accept-charset="utf-8">      <div class="row-fluid">
+            <div class="span4">
+                <h3>アップロードしてね</h3>
+                <input required="required" multiple="multiple" name="uploads[]" type="file" value="" id="form_uploads[]" />              <p><a class="btn btn-mini btn-info" href="#hintUpload" data-toggle="modal">ヒント</a></p>
+
+            </div>
+  
+            <div class="span4">
+            <h3>情報を入れてね</h3>
+            <label for="form_title">タイトル（必須）</label><input class="intput-middle" placeholder="title" required="required" name="title" value="" type="text" id="form_title" /><label for="form_creator">作成者</label><input class="intput-middle" placeholder="creator" name="creator" value="" type="text" id="form_creator" />              <p><a class="btn btn-mini btn-info" href="#hintMetadata" data-toggle="modal">ヒント</a></p>
+            <h3>ページ送り方向</h3>
+            <label class="radio">左から右 <small>横書き</small>
+  <input name="direction" value="ltr" checked="checked" type="radio" id="form_direction" /></label><label class="radio">右から左 <small>縦書き</small>
+  <input name="direction" value="rtl" type="radio" id="form_direction" /></label>
+                <p><a class="btn btn-mini btn-info" href="#hintPPD" data-toggle="modal">ヒント</a></p>
+            </div>
+  
+            <input name="language" value="ja" type="hidden" id="form_language" />
+        <div class="span4">
+          <h3>お好みでどうぞ</h3>
+          <fieldset  >
+  <legend>ページ自動生成</legend>        <label class="checkbox">
+              <input class="checkbox" name="titlepage" value="1" type="checkbox" id="form_titlepage" />扉ページ        </label>
+          <!--
+          <label class="checkbox">
+            <input class="checkbox" name="copyrightpage" value="1" type="checkbox" id="form_copyrightpage" />著作権ページ
+          </label> -->
+          <label class="checkbox">
+            <input class="checkbox" name="toc_in_spine" value="1" checked="checked" type="checkbox" id="form_toc_in_spine" />目次ページ        </label>
+          <!--
+          <label class="checkbox">
+            <input class="checkbox" name="colophon" value="1" type="checkbox" id="form_colophon" />奥付ページ
+          </label> -->
+          <p><a class="btn btn-mini btn-info" href="#hintPageGen" data-toggle="modal">ヒント</a></p>
+          </fieldset>
+          <fieldset  >
+  <legend>その他</legend>        <label class="checkbox">
+            <input class="checkbox" name="skipCover" value="1" checked="checked" type="checkbox" id="form_skipCover" />表紙ページをスキップする
+          </label>
+          <label class="checkbox">
+            <input class="checkbox" name="autoTcy" value="1" checked="checked" type="checkbox" id="form_autoTcy" />自動縦中横を有効にする
+          </label>
+          <select name="tcyDigit" class="span2" style="font-size:12px;height:24px">
+            <option value="2">2桁</option>
+            <option value="3">3桁</option>
+            <option value="4">4桁</option>
+          </select>
+          <label class="checkbox">
+            <input class="checkbox" name="kepub" value="1" type="checkbox" id="form_kepub" />拡張子を<code>.kepub.epub</code>にする        </label>
+          <label class="checkbox">
+            <input class="checkbox" name="auto_sentence_wrap" value="1" type="checkbox" id="form_auto_sentence_wrap" />文を句点ごとに<code>span</code>で囲む
+          </label>
+          <p><a class="btn btn-mini btn-info" href="#hintMisc" data-toggle="modal">ヒント</a></p>
+          </fieldset>      </div>
+      </div>
+  
+      <div class="row-fluid top-rule rss-container">
+        <div class="span8 offset3">
+          <p class="bridgehead"><span class="label label-warning">お知らせ</span></p>
+  <script language="JavaScript" src="//feed2js.org//feed2js.php?src=http%3A%2F%2Fblog.livedoor.jp%2Fdenden_proj%2Findex.rdf&chan=title&num=2&date=y&targ=y&utf=y"  charset="UTF-8" type="text/javascript"></script>
+  
+  <noscript>
+  <a href="http://feed2js.org//feed2js.php?src=http%3A%2F%2Fblog.livedoor.jp%2Fdenden_proj%2Findex.rdf&chan=title&num=3&date=y&targ=y&utf=y&html=y">View RSS feed</a>
+  </noscript>
+        </div>
+      </div>
+  
+      <div class="row-fluid">
+        <div class="span6 offset3" style="text-align:center; padding: 10px 0;">
+          <div><a href="https://open.nextpublishing.jp/denden2pod.html"><img src="banner_pod.png" alt="でんでんコンバーターで紙の本も作れちゃう？ ベータテスト実施中"/></a></div>
+        </div>
+      </div>
+  
+      <div class="row-fluid btn-wrapper top-rule bottom-rule">
+        <div class="span6 offset3">
+            <label class="checkbox">
+              <input name="preview" type="checkbox" value="1"> <a id="tip-preview" style="color:inherit" href="#" data-toggle="tooltip" title="このチェックボックスを有効にすると、変換したファイルをEPUBリーダ BiB/i を使ってプレビューします。またエラーチェックもできます。">作成したEPUBのプレビューとエラーチェック</a>
+            </label>
+            <div style="margin-bottom:20px"></div>
+          <button class="btn btn-large btn-block btn-primary" name="submit">変換</button></form>      </div>
+      </div>
+    </body>
+</html>
