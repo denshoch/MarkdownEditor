@@ -88,7 +88,7 @@
 
             <a class="navbar-brand" href="#"><i class="logo"></i> でんでんエディター</a> 
           </div>
-          <p class="navbar-text navbar-right"><small style="color:crimson;">ver 0.9.５</small></p>  
+          <p class="navbar-text navbar-right"><small style="color:crimson;">ver 0.9.6</small></p>  
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="https://conv.denshochan.com/" target="_blank">でんでんコンバーター</a></li>
@@ -520,6 +520,11 @@
                               <input id="opt_btn--autotextorientation" type="checkbox" checked> 縦書きの文字の向きを補正する
                             </label>
                           </div>
+                          <div class="checkbox">
+                            <label>
+                              <input id="opt_btn--aozoraruby" type="checkbox"> 青空文庫のルビ記法を使用する
+                            </label>
+                          </div>
                       </form>
                       </div> 
                       </div>
@@ -797,7 +802,7 @@
                                   <dl>
                                       <dt>twitter</dt>
                                       <dd>
-                                          <a href="http://twitter.com/lost_and_found">@lost_and_found</a>
+                                          <a href="https://twitter.com/lost_and_found">@lost_and_found</a>
                                       </dd>
                                       <dt>mail</dt>
                                       <dd>
@@ -818,7 +823,7 @@
                                           <div class="media-body">
                                               <h4 class="media-heading">電書ちゃん</h4>
                                               <p><a href="https://www.facebook.com/groups/dendenconverter/"
-                                                  >facebookコミュニティ</a>もあるのよ。気軽に参加してね</p>
+                                                  >facebookコミュニティ</a>もあるよ。気軽に参加してね</p>
                                           </div>
                                       </div>
                                   </div>
@@ -917,6 +922,7 @@ $(function() {
                 ns.config.request_autotcy = true;
                 ns.config.request_tcydigit = 2;
                 ns.config.request_autotextorientation = true;
+                ns.config.request_aozoraruby = false;
 
                 // editor setup
                 ns.editor = ace.edit("editor");
@@ -1007,7 +1013,8 @@ $(function() {
                             "mode": ns.config.request_mode,
                             "autoTcy": ns.config.request_autotcy,
                             "tcyDigit": ns.config.request_tcydigit,
-                            "autoTextOrientaion": ns.config.request_autotextorientation
+                            "autoTextOrientaion": ns.config.request_autotextorientation,
+                            "aozoraRuby": ns.config.request_aozoraruby,
                         }));
 
                     } catch (e) {
@@ -1274,6 +1281,12 @@ $(function() {
                     //console.log(v);
                     ns.config.request_autotextorientation = v;
                     //console.log(ns.config.request_autotextorientation);
+                });
+                $('#opt_btn--aozoraruby').change(function(){
+                    var v = $(this).prop('checked');
+                    //console.log(v);
+                    ns.config.request_aozoraruby = v;
+                    console.log(ns.config.request_aozoraruby);
                 });
                 $(window).bind("beforeunload", function() {
                   var obj = {
