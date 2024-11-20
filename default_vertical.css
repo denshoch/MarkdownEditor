@@ -176,12 +176,6 @@ a.noteref {
   text-combine-horizontal: all;
   text-combine-upright: all;
 }
-a.noteref:before {
-  content: "[";
-}
-a.noteref:after {
-  content: "]";
-}
 
 nav#toc, nav#landmarks, nav#loi, nav#lot, nav#page-list {
   margin-left: 2.5em;
