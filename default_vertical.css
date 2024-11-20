@@ -210,11 +210,11 @@ p {
 }
 
 a {
-  text-decoration: overline;
+  text-decoration: underline;
 }
 
 u {
-  text-decoration: overline;
+  text-decoration: underline;
 }
 
 em {
